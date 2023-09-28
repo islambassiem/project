@@ -18,7 +18,7 @@ return new class extends Migration
       $table->string('name_ar', 100);
       $table->string('code_ar', 100);
       $table->smallInteger('hours');
-      $table->string('added_by', 10);
+      $table->foreignId('user_id')->constrained();
       $table->timestamps();
     });
   }

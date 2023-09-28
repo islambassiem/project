@@ -16,7 +16,7 @@ return new class extends Migration
       $table->string('name');
       $table->string('email')->unique();
       $table->string('empid', 10)->uniqid();
-      $table->unsignedBigInteger('department_id');
+      $table->foreignId('department_id')->constrained();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->rememberToken();
