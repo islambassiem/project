@@ -14,8 +14,10 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-// Route::group(['prefix' => 'creditTransfer'], function () {
-//   Route::get('/{page}', [AdminController::class, 'index']);
-// });
 
-Route::get('/{page}', [AdminController::class, 'index']);
+// Route::get('/{page}', [AdminController::class, 'index']);
+
+Route::group(['prefix' => 'creditTransfer'], function () {
+
+});
+
