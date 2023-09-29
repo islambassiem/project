@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CreditTransfer\Auth\LoginController;
+use App\Http\Controllers\CreditTransfer\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ use App\Http\Controllers\AdminController;
 
 // Route::get('/{page}', [AdminController::class, 'index']);
 
-Route::group(['prefix' => 'creditTransfer'], function () {
-
+Route::group(['prefix' => 'creditTransfer'],function () {
+  Route::get('login', [LoginController::class, 'index'])->name('credit.loginView');
+  Route::post('/', [LoginController::class, 'login'])->name('credit.login');
 });
-
