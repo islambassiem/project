@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'creditTransfer'], function () {
-  Route::get('/', function () {
-    return view('welcome');
-  });
-});
+// Route::group(['prefix' => 'creditTransfer'], function () {
+//   Route::get('/{page}', [AdminController::class, 'index']);
+// });
+
+Route::get('/{page}', [AdminController::class, 'index']);
