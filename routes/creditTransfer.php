@@ -18,8 +18,11 @@ use App\Http\Controllers\CreditTransfer\DashboardController;
 
 
 // Route::get('/{page}', [AdminController::class, 'index']);
-
-Route::group(['prefix' => 'creditTransfer'],function () {
+Route::group(['namespace' => 'creditTransfer', 'prefix' => 'creditTransfer', 'middleware' => 'auth:creditTransfer'],function () {
+  Route::get('/', [DashboardController::class, 'index'])->name('credit.dashboard');
+  Route::get('/logout', [LoginController::class, 'logout'])->name('credit.logout');
+});
+Route::group(['namespace' => 'creditTransfer', 'prefix' => 'creditTransfer', 'middleware' => 'guest:creditTransfer'],function () {
   Route::get('login', [LoginController::class, 'index'])->name('credit.loginView');
-  Route::post('/', [LoginController::class, 'login'])->name('credit.login');
+  Route::post('login', [LoginController::class, 'login'])->name('credit.login');
 });
