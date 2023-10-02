@@ -14,7 +14,7 @@
   <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
       <div class="d-flex">
-        <h4 class="content-title mb-0 my-auto">Subjects</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Inaya</span>
+        <h4 class="content-title mb-0 my-auto">Colleges</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
       </div>
     </div>
   </div>
@@ -28,8 +28,8 @@
       <div class="card mg-b-20">
         <div class="card-header pb-0">
           <div class="d-flex justify-content-between">
-            <h4 class="card-title mg-b-0">Inaya Subjects</h4>
-            <a href="{{ route('subject.create') }}" class="btn btn-primary">Add Subject</a>
+            <h4 class="card-title mg-b-0">Colleges</h4>
+            <a href="{{ route('college.create') }}" class="btn btn-primary">Add College</a>
           </div>
         </div>
         <div class="card-body">
@@ -45,36 +45,22 @@
               </div>
             @endif
             <table id="example" class="table key-buttons text-md-nowrap">
-              @if (count($subjects) == 0)
-                <div class="alert alert-danger">There are no subjects</div>
+              @if (count($colleges) == 0)
+                <div class="alert alert-danger">There are no colleges</div>
               @else
                 <thead>
                   <tr>
                     <th class="border-bottom-0">English Name</th>
                     <th class="border-bottom-0">Arabic Name</th>
-                    <th class="border-bottom-0">English Code</th>
-                    <th class="border-bottom-0">Arabic Code</th>
-                    <th class="border-bottom-0">Hours</th>
                     <th colspan="2" class="border-bottom-0">Added by</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($subjects as $subject)
+                  @foreach ($colleges as $college)
                     <tr>
-                      <td>{{ $subject->name_en }}</td>
-                      <td>{{ $subject->name_ar }}</td>
-                      <td>{{ $subject->code_en }}</td>
-                      <td>{{ $subject->code_ar }}</td>
-                      <td>{{ $subject->hours }}</td>
-                      <td>{{ $subject->user_id }}</td>
-                      {{-- <a href="{{ route('subject.edit', $subject->id) }}" class="btn btn-info"> <i class="fa-solid fa-user-pen"></i>Edit</a> --}}
-                      {{-- <td>
-                        <form action="{{ route('subject.destroy', $subject->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                      </td> --}}
+                      <td>{{ $college->college_en }}</td>
+                      <td>{{ $college->college_ar }}</td>
+                      <td>{{ $college->user_id }}</td>
                     </tr>
                   @endforeach
                 </tbody>
