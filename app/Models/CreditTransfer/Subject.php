@@ -2,8 +2,10 @@
 
 namespace App\Models\CreditTransfer;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CreditTransfer\User;
+use App\Models\CreditTransfer\College;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subject extends Model
 {
@@ -11,5 +13,15 @@ class Subject extends Model
 
   protected $connection = 'creditTransfer';
   protected $table = 'subjects';
-  protected $fillable = ['name_en', 'code_en', 'name_ar', 'code_ar', 'hours', 'user_id'];
+  protected $fillable = ['name_en', 'code_en', 'name_ar', 'code_ar', 'hours', 'college_id','user_id'];
+
+  public function user(){
+    return $this->belongsTo(User::class);
+  }
+
+
+  public function college(){
+    return $this->belongsTo(College::class);
+  }
+
 }

@@ -2,8 +2,9 @@
 
 namespace App\Models\CreditTransfer;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CreditTransfer\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class College extends Model
 {
@@ -14,6 +15,10 @@ class College extends Model
 
   protected $table = 'colleges';
 
-  protected $fillable = ['college_en', 'college_ar', 'user_id'];
+  protected $fillable = ['college_en', 'college_ar','user_id'];
+
+  public function user(){
+    return $this->belongsTo(User::class);
+  }
 
 }

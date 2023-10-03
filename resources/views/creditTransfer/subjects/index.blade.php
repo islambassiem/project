@@ -66,7 +66,7 @@
                       <td>{{ $subject->code_en }}</td>
                       <td>{{ $subject->code_ar }}</td>
                       <td>{{ $subject->hours }}</td>
-                      <td>{{ $subject->user_id }}</td>
+                      <td>{{ $subject->user->name }}</td>
                       {{-- <a href="{{ route('subject.edit', $subject->id) }}" class="btn btn-info"> <i class="fa-solid fa-user-pen"></i>Edit</a> --}}
                       {{-- <td>
                         <form action="{{ route('subject.destroy', $subject->id) }}" method="post">

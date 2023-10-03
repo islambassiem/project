@@ -14,8 +14,9 @@ class SubjectController extends Controller
    */
   public function index()
   {
-    $subjects = Subject::all();
-    return view('creditTransfer.subjects.index', compact('subjects'));
+    return view('creditTransfer.subjects.index', [
+      'subjects' => Subject::with('user')->latest()->get()
+    ]);
   }
 
   /**
@@ -52,6 +53,7 @@ class SubjectController extends Controller
       'hours.min' => 'Hours cannot be in minus',
     ]);
     $validated['user_id'] = auth('creditTransfer')->user()->id;
+    $validated['college_id'] = 1;
     Subject::create($validated);
     session()->flash('success', 'You have added a subject succefully');
     return redirect()->route('subject.index');
@@ -100,6 +102,7 @@ class SubjectController extends Controller
       'hours.min' => 'Hours cannot be in minus',
     ]);
     $validated['user_id'] = auth('creditTransfer')->user()->id;
+    $validated['college_id'] = 1;
     Subject::where('id', $request->id)->update($validated);
     session()->flash('success', 'You have updated the subject succefully');
     return redirect()->route('subject.index');

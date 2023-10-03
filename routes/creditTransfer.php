@@ -1,14 +1,16 @@
 <?php
 
 use App\Models\CreditTransfer\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Models\CreditTransfer\College;
 use App\Http\Controllers\AdminController;
 use App\Models\CreditTransfer\Department;
+use App\Http\Controllers\CreditTransfer\CollegeController;
 use App\Http\Controllers\CreditTransfer\SubjectController;
 use App\Http\Controllers\CreditTransfer\DashboardController;
 use App\Http\Controllers\CreditTransfer\Auth\LoginController;
-use App\Http\Controllers\CreditTransfer\CollegeController;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\CreditTransfer\TransferableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,32 +50,46 @@ Route::group(['prefix' => 'creditTransfer'], function () {
   Route::resource('college', CollegeController::class);
 });
 
+/*
+  transferables
+*/
+Route::group(['prefix' => 'creditTransfer'], function () {
+  Route::resource('transferable', TransferableController::class);
+});
+
 
 Route::get('/', function (){
-  Department::create([
-    'department_en' => 'Humman Resources',
-    'department_ar' => 'الموارد البشرية'
+  // Department::create([
+  //   'department_en' => 'Humman Resources',
+  //   'department_ar' => 'الموارد البشرية'
+  // ]);
+
+  // Department::create([
+  //   'department_en' => 'Nursing',
+  //   'department_ar' => 'التمريض'
+  // ]);
+
+  // User::create([
+  //   'name' => 'Islam Bassiem Abdelfattah Aboukila',
+  //   'email' => 'islam@inaya.edu.sa',
+  //   'empid' => '500322',
+  //   'department_id' => '1',
+  //   'password' => Hash::make('123')
+  // ]);
+
+  // User::create([
+  //   'name' => 'Rawhia Saleh Salah Doghaim',
+  //   'email' => 'rawhia@inaya.edu.sa',
+  //   'empid' => '500545',
+  //   'department_id' => '2',
+  //   'password' => Hash::make('123')
+  // ]);
+
+  College::create([
+    'college_en' => 'Inaya Medical College',
+    'college_ar' => 'كلية العناية الطبية',
+    'user_id' => 1
   ]);
 
-  Department::create([
-    'department_en' => 'Nursing',
-    'department_ar' => 'التمريض'
-  ]);
-
-  User::create([
-    'name' => 'Islam Bassiem Abdelfattah Aboukila',
-    'email' => 'islam@inaya.edu.sa',
-    'empid' => '500322',
-    'department_id' => '1',
-    'password' => Hash::make('123')
-  ]);
-
-  User::create([
-    'name' => 'Rawhia Saleh Salah Doghaim',
-    'email' => 'rawhia@inaya.edu.sa',
-    'empid' => '500545',
-    'department_id' => '2',
-    'password' => Hash::make('123')
-  ]);
 });
 Route::get('/{page}', [AdminController::class, 'index']);

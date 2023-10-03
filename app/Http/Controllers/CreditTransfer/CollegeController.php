@@ -14,7 +14,7 @@ class CollegeController extends Controller
    */
   public function index()
   {
-    $colleges = College::all();
+    $colleges = College::where('id', '>', '1')->get();
     return view('creditTransfer.colleges.index', compact('colleges'));
   }
 
@@ -41,7 +41,6 @@ class CollegeController extends Controller
       'college_ar.unique' => 'The college already exists',
     ]);
     $validated['user_id'] = auth('creditTransfer')->user()->id;
-    // dd(auth('creditTransfer')->user()->id);
     College::create($validated);
     session()->flash('success', 'You have added a college succefully');
     return redirect()->route('college.index');
