@@ -11,6 +11,7 @@ use App\Http\Controllers\CreditTransfer\SubjectController;
 use App\Http\Controllers\CreditTransfer\DashboardController;
 use App\Http\Controllers\CreditTransfer\Auth\LoginController;
 use App\Http\Controllers\CreditTransfer\TransferableController;
+use App\Http\Controllers\CreditTransfer\SpecilaizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,14 @@ Route::group(['prefix' => 'creditTransfer'], function () {
 */
 Route::group(['prefix' => 'creditTransfer'], function () {
   Route::resource('transferable', TransferableController::class);
+});
+
+
+/*
+  specialization
+*/
+Route::group(['prefix' => 'creditTransfer'], function () {
+  Route::resource('specialization', SpecilaizationController::class);
 });
 
 

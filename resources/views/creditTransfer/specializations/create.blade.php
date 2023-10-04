@@ -1,0 +1,72 @@
+@extends('creditTransfer.layouts.master')
+@section('css')
+<!--- Internal Select2 css-->
+<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+@endsection
+@section('page-header')
+				<!-- breadcrumb -->
+				<div class="breadcrumb-header justify-content-between">
+					<div class="my-auto">
+						<div class="d-flex">
+							<h4 class="content-title mb-0 my-auto">Specializations</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Crate specialization</span>
+						</div>
+					</div>
+				</div>
+				<!-- breadcrumb -->
+@endsection
+@section('content')
+      <!-- row -->
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="main-content-label mg-b-5">
+                Add New Specialization
+              </div>
+              <form action="{{ route('specialization.store') }}" method="post">
+                @csrf
+                <div class="row">
+                  <div class="col-md-10 col-lg-8 col-xl-6 mx-auto d-block">
+                    <div class="card card-body pd-20 pd-md-40 border shadow-none">
+                      <h5 class="card-title mg-b-20">Your spec Details</h5>
+                      <div class="form-group">
+                        <label class="main-content-label tx-11 tx-medium tx-gray-600">English Name</label>
+                        <input class="form-control" type="text" name="spec_en" value="{{ old('spec_en') }}">
+                          @error('spec_en')
+                            <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                            </div>
+                          @enderror
+                      </div>
+                      <div class="form-group">
+                        <label class="main-content-label tx-11 tx-medium tx-gray-600">Arabic Name</label>
+                        <input class="form-control" type="text" name="spec_ar" value="{{ old('spec_ar') }}">
+                        @error('spec_ar')
+                          <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                          </div>
+                        @enderror
+                      </div>
+                      <div class="form-group">
+                      </div>
+                      <button class="btn btn-main-primary btn-block">Add Specialization</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- Container closed -->
+  </div>
+  <!-- main-content closed -->
+@endsection
+@section('js')
+<!--Internal  Select2 js -->
+<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<!-- Form-layouts js -->
+<script src="{{URL::asset('assets/js/form-layouts.js')}}"></script>
+@endsection

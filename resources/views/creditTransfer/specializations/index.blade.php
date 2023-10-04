@@ -14,7 +14,7 @@
   <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
       <div class="d-flex">
-        <h4 class="content-title mb-0 my-auto">Colleges</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+        <h4 class="content-title mb-0 my-auto">Specializations</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
       </div>
     </div>
   </div>
@@ -28,8 +28,8 @@
       <div class="card mg-b-20">
         <div class="card-header pb-0">
           <div class="d-flex justify-content-between">
-            <h4 class="card-title mg-b-0">Colleges</h4>
-            <a href="{{ route('college.create') }}" class="btn btn-primary">Add College</a>
+            <h4 class="card-title mg-b-0">Specializations</h4>
+            <a href="{{ route('specialization.create') }}" class="btn btn-primary">Add Specialization</a>
           </div>
         </div>
         <div class="card-body">
@@ -45,8 +45,8 @@
               </div>
             @endif
             <table id="example" class="table key-buttons text-md-nowrap">
-              @if (count($colleges) == 0)
-                <div class="alert alert-danger">There are no colleges</div>
+              @if (count($specializations) == 0)
+                <div class="alert alert-danger">There are no Specializations</div>
               @else
                 <thead>
                   <tr>
@@ -56,11 +56,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($colleges as $college)
+                  @foreach ($specializations as $specialization)
                     <tr>
-                      <td>{{ $college->college_en }}</td>
-                      <td>{{ $college->college_ar }}</td>
-                      <td>{{ $college->user->name }}</td>
+                      <td>{{ $specialization->spec_en }}</td>
+                      <td>{{ $specialization->spec_ar }}</td>
+                      <td>{{ $specialization->user->name }}</td>
                     </tr>
                   @endforeach
                 </tbody>
