@@ -26,7 +26,7 @@
 				@yield('content')
 				@include('creditTransfer.layouts.sidebar')
 				@include('creditTransfer.layouts.models')
-        @include('creditTransfer.layouts.footer')
+        {{-- @include('creditTransfer.layouts.footer') --}}
 				@include('creditTransfer.layouts.footer-scripts')
 	</body>
 </html>

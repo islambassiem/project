@@ -56,7 +56,7 @@
                     <th class="border-bottom-0">Arabic Code</th>
                     <th class="border-bottom-0">College</th>
                     <th class="border-bottom-0">Hours</th>
-                    <th colspan="2" class="border-bottom-0">Added by</th>
+                    <th class="border-bottom-0">Added by</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -106,5 +106,5 @@
 <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
 <!--Internal  Datatable js -->
-{{-- <script src="{{URL::asset('assets/js/table-data.js')}}"></script> --}}
+<script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 @endsection
