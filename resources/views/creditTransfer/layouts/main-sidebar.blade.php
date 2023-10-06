@@ -59,6 +59,14 @@
               </span>
             </a>
 					</li>
+          <li class="slide">
+            <a class="side-menu__item p-1" href="{{ route('transaction.index') }}">
+              <i class="fa-solid fa-book-open mx-2"></i>
+              <span class="side-menu__label">
+                Transactions
+              </span>
+            </a>
+					</li>
 				</ul>
 			</div>
 		</aside>

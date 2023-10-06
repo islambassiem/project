@@ -10,8 +10,10 @@ use App\Http\Controllers\CreditTransfer\CollegeController;
 use App\Http\Controllers\CreditTransfer\SubjectController;
 use App\Http\Controllers\CreditTransfer\DashboardController;
 use App\Http\Controllers\CreditTransfer\Auth\LoginController;
+use App\Http\Controllers\CreditTransfer\TransactionController;
 use App\Http\Controllers\CreditTransfer\TransferableController;
 use App\Http\Controllers\CreditTransfer\SpecilaizationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,36 +38,13 @@ Route::group(['namespace' => 'creditTransfer', 'prefix' => 'creditTransfer', 'mi
 
 
 
-/*
-  Subjects
-*/
 Route::group(['prefix' => 'creditTransfer'], function () {
   Route::resource('subject', SubjectController::class);
-});
-
-
-/*
-  Colleges
-*/
-Route::group(['prefix' => 'creditTransfer'], function () {
   Route::resource('college', CollegeController::class);
-});
-
-/*
-  transferables
-*/
-Route::group(['prefix' => 'creditTransfer'], function () {
   Route::resource('transferable', TransferableController::class);
-});
-
-
-/*
-  specialization
-*/
-Route::group(['prefix' => 'creditTransfer'], function () {
   Route::resource('specialization', SpecilaizationController::class);
+  Route::resource('transaction', TransactionController::class);
 });
-
 
 Route::get('/', function (){
   // Department::create([
