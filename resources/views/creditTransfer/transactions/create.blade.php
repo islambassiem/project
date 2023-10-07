@@ -2,6 +2,8 @@
 @section('css')
 <!--- Internal Select2 css-->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+{{-- Custom style --}}
+{{-- <link href="{{URL::asset('assets/css/custom.css')}}" rel="stylesheet"> --}}
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -107,4 +109,6 @@
 <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <!-- Form-layouts js -->
 <script src="{{URL::asset('assets/js/form-layouts.js')}}"></script>
+{{-- Custom script --}}
+<script src="{{URL::asset('assets/js/myScript.js')}}"></script>
 @endsection

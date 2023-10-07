@@ -56,7 +56,7 @@
                     <th class="border-bottom-0">College</th>
                     <th class="border-bottom-0">Specialization old</th>
                     <th class="border-bottom-0">Specialization new</th>
-                    <th class="border-bottom-0">Added by</th>
+                    <th class="border-bottom-0">link</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -68,7 +68,7 @@
                       <td>{{ $transaction->college->college_en }}</td>
                       <td>{{ $transaction->specialization->spec_en }}</td>
                       <td>{{ $transaction->department->department_en }}</td>
-                      <td>{{ $transaction->user->name }}</td>
+                      <td><a href="{{ route('transaction.show', ['transaction' => $transaction->id]) }}" class="btn btn-primary">>></a></td>
                     </tr>
                   @endforeach
                 </tbody>

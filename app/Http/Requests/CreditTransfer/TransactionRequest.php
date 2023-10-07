@@ -23,7 +23,7 @@ class TransactionRequest extends FormRequest
   {
     return [
       'student_name'    => 'required',
-      'student_id'      => 'required',
+      'student_id'      => 'required|unique:transactions,student_id',
       'semester'        => 'required|numeric|between:111,999',
       'college_id'         => 'required',
       'specialization_id'  => 'required',
@@ -36,6 +36,7 @@ class TransactionRequest extends FormRequest
     return  [
       'student_name.required'        => 'You cannot leave student name blank',
       'student_id.required'          => 'You cannot leave student ID blank',
+      'student_id.unique'            => 'This student already exists',
       'semester.required'            => 'You cannot leave the semester blank',
       'semester.between'             => 'The semester is not correct',
       'college_id.required'          => 'You need to choose the previous college of the students',

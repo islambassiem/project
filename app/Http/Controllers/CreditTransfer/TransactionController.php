@@ -41,7 +41,8 @@ class TransactionController extends Controller
     $validated['user_id'] = auth('creditTransfer')->user()->id;
     Transaction::create($validated);
     return view('creditTransfer.transactions.details', [
-      'transaction' => Transaction::latest('id')->first()
+      'transaction' => Transaction::latest('id')->first(),
+      'subjects'    => DB::table('subjects')->where('college_id', '>', '1')->get()
     ]);
   }
 
@@ -50,7 +51,10 @@ class TransactionController extends Controller
    */
   public function show(string $id)
   {
-    //
+    return view('creditTransfer.transactions.details', [
+      'transaction' => Transaction::findOrfail($id)->first(),
+      'subjects'    => DB::table('subjects')->where('college_id', '>', '1')->get(),
+    ]);
   }
 
   /**

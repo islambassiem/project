@@ -73,11 +73,17 @@ Route::get('/', function (){
   //   'password' => Hash::make('123')
   // ]);
 
-  College::create([
-    'college_en' => 'Inaya Medical College',
-    'college_ar' => 'كلية العناية الطبية',
-    'user_id' => 1
-  ]);
+  // College::create([
+  //   'college_en' => 'Inaya Medical College',
+  //   'college_ar' => 'كلية العناية الطبية',
+  //   'user_id' => 1
+  // ]);
 
 });
+
+  Route::get('/', function (){
+    return view('zmultiStepFrom.index');
+  });
+
+  
 Route::get('/{page}', [AdminController::class, 'index']);

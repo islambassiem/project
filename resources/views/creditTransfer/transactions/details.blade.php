@@ -45,22 +45,129 @@
             <div class="panel-body tabs-menu-body main-content-body-right border">
               <div class="tab-content">
                 <div class="tab-pane active" id="tab4">
-                  <div>{{ $transaction->student_id }}</div>
-                  <div>{{ $transaction->student_name }}</div>
-                  <div>{{ $transaction->semester }}</div>
-                  <div>{{ $transaction->college->college_en }}</div>
-                  <div>{{ $transaction->specialization->spec_en }}</div>
-                  <div>{{ $transaction->department->department_en }}</div>
-                  <div>{{ $transaction->user->name }}</div>
+                  <div class="table-responsive">
+                    <table class="table mg-b-0 text-md-nowrap">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Student ID</th>
+                          <td>{{ $transaction->student_id }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Student Name</th>
+                          <td>{{ $transaction->student_name }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Previous College</th>
+                          <td>{{ $transaction->college->college_en }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Previous Specialization</th>
+                          <td>{{ $transaction->specialization->spec_en }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Upcoming Specialization</th>
+                          <td>{{ $transaction->department->department_en }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Semester</th>
+                          <td>{{ $transaction->semester }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div class="tab-pane" id="tab5">
-                  <p>dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                  <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime</p>
-                  <p class="mb-0">placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                  <div class="row">
+                    {{-- <div class="col-12">
+                      <div class="col-xl-12">
+                        <div class="card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <h4 class="card-title mg-b-0">Transerables</h4>
+                              <i class="mdi mdi-dots-horizontal text-gray"></i>
+                            </div>
+                            <p class="tx-12 tx-gray-500 mb-2">The subjects studied by the student <a href="{{ route('subject.index') }}">Learn more</a></p>
+                          </div>
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table text-md-nowrap" id="example">
+                                <thead>
+                                  <tr>
+                                    <th class="border-bottom-0">Code</th>
+                                    <th class="border-bottom-0">Name</th>
+                                    <th class="border-bottom-0">Add</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach ($subjects as $subject)
+                                  <tr>
+                                    <td>{{ $subject->code_en }}</td>
+                                    <td>{{ $subject->name_en }}</td>
+                                    <td><button class="btn btn-primary py-0 px-2" data-id="{{ $subject->id }}" id="btn"><i class="fa-solid fa-angles-right" id="i" data-id="{{ $subject->id }}"></i> Add</button></td>
+                                  </tr>
+                                  @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                          </div><!-- bd -->
+                        </div><!-- bd -->
+                      </div>
+                    </div> --}}
+
+
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        @if (session()->has('success'))
+                          <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                          </div>
+                        @endif
+                        @if (session()->has('delete'))
+                          <div class="alert alert-danger">
+                            {{ session()->get('delete') }}
+                          </div>
+                        @endif
+                        <table id="example" class="table key-buttons text-md-nowrap">
+                          {{-- @if (count($colleges) == 0)
+                            <div class="alert alert-danger">There are no colleges</div>
+                          @else --}}
+                            <thead>
+                              <tr>
+                                <th class="border-bottom-0">English Name</th>
+                                <th class="border-bottom-0">Arabic Name</th>
+                                <th class="border-bottom-0" style="width: 33%">Added by</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{-- @foreach ($colleges as $college)
+                                <tr>
+                                  <td>{{ $college->college_en }}</td>
+                                  <td>{{ $college->college_ar }}</td>
+                                  <td>{{ $college->user->name }}</td>
+                                </tr>
+                              @endforeach --}}
+                            </tbody>
+                          {{-- @endif --}}
+                        </table>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="col-6">
+                    </div>
+                  </div>
                 </div>
                 <div class="tab-pane" id="tab6">
-                  <p>praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,</p>
-                  <p class="mb-0">similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                  <div class="row">
+                    <div class="col-6">
+                      left
+                    </div>
+                    <div class="col-6">
+                      right
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -87,4 +194,13 @@
 <script src="{{URL::asset('assets/plugins/clipboard/clipboard.js')}}"></script>
 <!-- Internal Prism js-->
 <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
+
+<script>
+  document.addEventListener('click', function (e){
+    if(e.target.id == 'btn' || e.target.id == 'i'){
+      //
+    }
+  });
+
+</script>
 @endsection
