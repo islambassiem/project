@@ -26,9 +26,11 @@ class TransactionController extends Controller
   public function create()
   {
     return view('creditTransfer.transactions.create', [
-      'colleges'          => DB::table('colleges')->where('id', '>', '1')->get(),
-      'specializations'   => DB::table('specializations')->get(),
-      'departments'       => DB::table('departments')->get()
+      'colleges'          => DB::connection('creditTransfer')->table('colleges')->where('id', '>', '1')->get(),
+      'specializations'   => DB::connection('creditTransfer')->table('specializations')->get(),
+      'departments'       => DB::connection('creditTransfer')->table('departments')->get(),
+      'transderables'     => DB::connection('creditTransfer')->table('subjects')->where('college_id', '>', '1')->get(),
+      'subjects'          => DB::connection('creditTransfer')->table('subjects')->where('college_id', '=', '1')->get(),
     ]);
   }
 
@@ -42,7 +44,7 @@ class TransactionController extends Controller
     Transaction::create($validated);
     return view('creditTransfer.transactions.details', [
       'transaction' => Transaction::latest('id')->first(),
-      'subjects'    => DB::table('subjects')->where('college_id', '>', '1')->get()
+      'subjects'    => DB::connection('creditTransfer')->table('subjects')->where('college_id', '>', '1')->get()
     ]);
   }
 
@@ -53,7 +55,7 @@ class TransactionController extends Controller
   {
     return view('creditTransfer.transactions.details', [
       'transaction' => Transaction::findOrfail($id)->first(),
-      'subjects'    => DB::table('subjects')->where('college_id', '>', '1')->get(),
+      'subjects'    => DB::connection('creditTransfer')->table('subjects')->where('college_id', '>', '1')->get(),
     ]);
   }
 

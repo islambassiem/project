@@ -27,8 +27,9 @@
   <div class="card mg-b-20" id="tabs-style2">
     <div class="card-body">
       <div class="main-content-label mg-b-5">
-        Credit Transfer Details
+        Basic Style2 Tabs
       </div>
+      <p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
       <div class="text-wrap">
         <div class="example">
           <div class="panel panel-primary tabs-style-2">
@@ -36,9 +37,9 @@
               <div class="tabs-menu1">
                 <!-- Tabs -->
                 <ul class="nav panel-tabs main-nav-line">
-                  <li><a href="#tab4" class="nav-link active" data-toggle="tab">Credit Transfer Details</a></li>
-                  <li><a href="#tab5" class="nav-link" data-toggle="tab">Courses to be transfered</a></li>
-                  <li><a href="#tab6" class="nav-link" data-toggle="tab">Transfered Courses</a></li>
+                  <li><a href="#tab4" class="nav-link active" data-toggle="tab">Credit Transfer</a></li>
+                  <li><a href="#tab5" class="nav-link" data-toggle="tab">Transferables</a></li>
+                  <li><a href="#tab6" class="nav-link" data-toggle="tab">Tab 03</a></li>
                 </ul>
               </div>
             </div>
@@ -77,130 +78,61 @@
                   </div>
                 </div>
                 <div class="tab-pane" id="tab5">
-                  <div class="row">
-                    {{-- <div class="col-12">
-                      <div class="col-xl-12">
-                        <div class="card">
-                          <div class="card-header pb-0">
-                            <div class="d-flex justify-content-between">
-                              <h4 class="card-title mg-b-0">Transerables</h4>
-                              <i class="mdi mdi-dots-horizontal text-gray"></i>
-                            </div>
-                            <p class="tx-12 tx-gray-500 mb-2">The subjects studied by the student <a href="{{ route('subject.index') }}">Learn more</a></p>
-                          </div>
-                          <div class="card-body">
-                            <div class="table-responsive">
-                              <table class="table text-md-nowrap" id="example">
-                                <thead>
-                                  <tr>
-                                    <th class="border-bottom-0">Code</th>
-                                    <th class="border-bottom-0">Name</th>
-                                    <th class="border-bottom-0">Add</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  @foreach ($subjects as $subject)
-                                  <tr>
-                                    <td>{{ $subject->code_en }}</td>
-                                    <td>{{ $subject->name_en }}</td>
-                                    <td><button class="btn btn-primary py-0 px-2" data-id="{{ $subject->id }}" id="btn"><i class="fa-solid fa-angles-right" id="i" data-id="{{ $subject->id }}"></i> Add</button></td>
-                                  </tr>
-                                  @endforeach
-                                </tbody>
-                              </table>
-                            </div>
-                          </div><!-- bd -->
-                        </div><!-- bd -->
-                      </div>
-                    </div> --}}
-
-
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        @if (session()->has('success'))
-                          <div class="alert alert-success">
-                            {{ session()->get('success') }}
-                          </div>
-                        @endif
-                        @if (session()->has('delete'))
-                          <div class="alert alert-danger">
-                            {{ session()->get('delete') }}
-                          </div>
-                        @endif
-                        <table id="example" class="table key-buttons text-md-nowrap">
-                          {{-- @if (count($colleges) == 0)
-                            <div class="alert alert-danger">There are no colleges</div>
-                          @else --}}
-                            <thead>
-                              <tr>
-                                <th class="border-bottom-0">English Name</th>
-                                <th class="border-bottom-0">Arabic Name</th>
-                                <th class="border-bottom-0" style="width: 33%">Added by</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {{-- @foreach ($colleges as $college)
-                                <tr>
-                                  <td>{{ $college->college_en }}</td>
-                                  <td>{{ $college->college_ar }}</td>
-                                  <td>{{ $college->user->name }}</td>
-                                </tr>
-                              @endforeach --}}
-                            </tbody>
-                          {{-- @endif --}}
-                        </table>
-                      </div>
-                    </div>
-
-
-
-
-                    <div class="col-6">
-                    </div>
-                  </div>
+                  tab 5
                 </div>
                 <div class="tab-pane" id="tab6">
-                  <div class="row">
-                    <div class="col-6">
-                      left
-                    </div>
-                    <div class="col-6">
-                      right
-                    </div>
-                  </div>
+                  <p>praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,</p>
+                  <p class="mb-0">similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!---Prism Pre code-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 @endsection
 
 
 @section('js')
 <!--Internal  Datepicker js -->
-<script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script> --}}
 <!-- Internal Select2 js-->
-<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script> --}}
 <!-- Internal Jquery.mCustomScrollbar js-->
-<script src="{{URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.concat.min.js')}}"></script> --}}
 <!-- Internal Input tags js-->
-<script src="{{URL::asset('assets/plugins/inputtags/inputtags.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/inputtags/inputtags.js')}}"></script> --}}
 <!--- Tabs JS-->
-<script src="{{URL::asset('assets/plugins/tabs/jquery.multipurpose_tabcontent.js')}}"></script>
-<script src="{{URL::asset('assets/js/tabs.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/tabs/jquery.multipurpose_tabcontent.js')}}"></script>
+<script src="{{URL::asset('assets/js/tabs.js')}}"></script> --}}
 <!--Internal  Clipboard js-->
-<script src="{{URL::asset('assets/plugins/clipboard/clipboard.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/clipboard/clipboard.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/clipboard/clipboard.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/clipboard/clipboard.js')}}"></script> --}}
 <!-- Internal Prism js-->
-<script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script> --}}
 
-<script>
-  document.addEventListener('click', function (e){
-    if(e.target.id == 'btn' || e.target.id == 'i'){
-      //
-    }
-  });
-
-</script>
+<!-- Internal Data tables -->
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script> --}}
+<!--Internal  Datatable js -->
+{{-- <script src="{{URL::asset('assets/js/jquery.js')}}"></script>
+<script src="{{URL::asset('assets/js/jquery.js')}}"></script> --}}
 @endsection

@@ -23,7 +23,7 @@ class TransactionRequest extends FormRequest
   {
     return [
       'student_name'    => 'required',
-      'student_id'      => 'required|unique:transactions,student_id',
+      'student_id'      => 'required|unique:App\Models\CreditTransfer\Transaction,student_id',
       'semester'        => 'required|numeric|between:111,999',
       'college_id'         => 'required',
       'specialization_id'  => 'required',
