@@ -44,9 +44,9 @@ class TransactionController extends Controller
     $user_id = auth('creditTransfer')->user()->id;
     $validated['user_id'] = $user_id;
     Transaction::create($validated);
-    $transaction_id = DB::connection('creditTransfer')->table('transactions')->latest('created_at')->first('id');
+    $transaction = Transaction::with(['college', 'specialization', 'department'])->latest('created_at')->first();
     $subjects = [];
-    if(isset($validated['transferable_id'])){ 
+    if(isset($validated['transferable_id'])){
       foreach ($validated['transferable_id'] as $id) {
         $subjects[] = $id;
       }
@@ -58,16 +58,30 @@ class TransactionController extends Controller
     }
     foreach ($subjects as $subject) {
       TransactionSubject::create([
-        'transaction_id' =>  $transaction_id->id,
+        'transaction_id' =>  $transaction->id,
         'subject_id'     =>  $subject,
         'user_id'        =>  $user_id
       ]);
     }
 
+    $transferables = DB::connection('creditTransfer')
+      ->table('subjects')
+      ->join('transactions_subjects', 'transactions_subjects.subject_id', '=', 'subjects.id')
+      ->where('transactions_subjects.transaction_id', '=',  $transaction->id)
+      ->where('college_id', '>', '1')
+      ->get();
+
+      $subjects = DB::connection('creditTransfer')
+      ->table('subjects')
+      ->join('transactions_subjects', 'transactions_subjects.subject_id', '=', 'subjects.id')
+      ->where('transactions_subjects.transaction_id', '=',  $transaction->id)
+      ->where('college_id', '=', '1')
+      ->get();
+
     return view('creditTransfer.transactions.details', [
-      'transaction' => Transaction::latest('id')->first(),
-      'subjects'    => DB::connection('creditTransfer')->table('subjects')->where('college_id', '>', '1')->get()
-    ]);
+      'transferables' => $transferables,
+      'transaction'   => $transaction,
+      'subjects'      => $subjects]);
   }
 
   /**
@@ -75,9 +89,24 @@ class TransactionController extends Controller
    */
   public function show(string $id)
   {
+    $transaction = Transaction::findOrFail($id);
+    $subjects = DB::connection('creditTransfer')
+      ->table('transactions_subjects')
+      ->join('subjects', 'subjects.id', '=' , 'transactions_subjects.subject_id')
+      ->where('transaction_id', $transaction->id)
+      ->where('subjects.college_id', '=' , '1')
+      ->get();
+    $transferables = DB::connection('creditTransfer')
+      ->table('transactions_subjects')
+      ->join('subjects', 'subjects.id', '=' , 'transactions_subjects.subject_id')
+      ->where('transaction_id', $transaction->id)
+      ->where('subjects.college_id', '>' , '1')
+      ->get();
+
     return view('creditTransfer.transactions.details', [
-      'transaction' => Transaction::findOrfail($id)->first(),
-      'subjects'    => DB::connection('creditTransfer')->table('subjects')->where('college_id', '>', '1')->get(),
+      'transaction'    => $transaction,
+      'subjects'       => $subjects,
+      'transferables'  => $transferables
     ]);
   }
 
@@ -104,6 +133,7 @@ class TransactionController extends Controller
   {
     //
   }
+
 
 
   public function filterTransferables($college_id)

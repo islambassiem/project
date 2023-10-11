@@ -4,6 +4,7 @@ namespace App\Models\CreditTransfer;
 
 use App\Models\CreditTransfer\User;
 use App\Models\CreditTransfer\College;
+use App\Models\CreditTransfer\Subject;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\CreditTransfer\Department;
 use App\Models\CreditTransfer\Specialization;
@@ -38,6 +39,10 @@ class Transaction extends Model
 
     public function department(){
       return $this->belongsTo(Department::class);
+    }
+
+    public function subjects(){
+      return $this->hasMany(Subject::class);
     }
 
 }

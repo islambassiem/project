@@ -6,6 +6,7 @@
 <link href="{{URL::asset('assets/plugins/inputtags/inputtags.css')}}" rel="stylesheet">
 <!--- Custom-scroll -->
 <link href="{{URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{ URL::asset('assets/css/custom/transaction.css') }}">
 @endsection
 
 @section('page-header')
@@ -22,117 +23,180 @@
 
 
 @section('content')
-<div class="col-xl-12">
-  <!-- div -->
-  <div class="card mg-b-20" id="tabs-style2">
-    <div class="card-body">
-      <div class="main-content-label mg-b-5">
-        Basic Style2 Tabs
-      </div>
-      <p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
-      <div class="text-wrap">
-        <div class="example">
-          <div class="panel panel-primary tabs-style-2">
-            <div class=" tab-menu-heading">
-              <div class="tabs-menu1">
-                <!-- Tabs -->
-                <ul class="nav panel-tabs main-nav-line">
-                  <li><a href="#tab4" class="nav-link active" data-toggle="tab">Credit Transfer</a></li>
-                  <li><a href="#tab5" class="nav-link" data-toggle="tab">Transferables</a></li>
-                  <li><a href="#tab6" class="nav-link" data-toggle="tab">Tab 03</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="panel-body tabs-menu-body main-content-body-right border">
-              <div class="tab-content">
-                <div class="tab-pane active" id="tab4">
-                  <div class="table-responsive">
-                    <table class="table mg-b-0 text-md-nowrap">
-                      <tbody>
-                        <tr>
-                          <th scope="row">Student ID</th>
-                          <td>{{ $transaction->student_id }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Student Name</th>
-                          <td>{{ $transaction->student_name }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Previous College</th>
-                          <td>{{ $transaction->college->college_en }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Previous Specialization</th>
-                          <td>{{ $transaction->specialization->spec_en }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Upcoming Specialization</th>
-                          <td>{{ $transaction->department->department_en }}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Semester</th>
-                          <td>{{ $transaction->semester }}</td>
-                        </tr>
-                      </tbody>
-                    </table>
+				<!-- row -->
+				<div class="row" id="printable">
+					<div class="col-sm-12 col-md-12">
+						<div class="card custom-card">
+							<div class="card-body pb-0">
+
+                {{-- ###################################################### --}}
+
+                <div class="row">
+                  <div class="col d-flex flex-column align-items-center">
+                    <img src="{{URL::asset('assets/img/brand/logo.png')}}" alt="" style="width: 100px; height: 100px;">
+                    <h6>Inaya Medical Collgeges</h6>
+                    <h6>كليات العناية الطبية</h6>
+                    <div class="date">
+                      Date: {{ date('d/m/Y') }}
+                    </div>
                   </div>
                 </div>
-                <div class="tab-pane" id="tab5">
-                  tab 5
+                <div class="row">
+                  <div class="col">
+                    <div class="head text-center">
+                      <h4>Credit Transfer Form</h4>
+                      <h4>إستمارة معادلة</h4>
+                    </div>
+                  </div>
                 </div>
-                <div class="tab-pane" id="tab6">
-                  <p>praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,</p>
-                  <p class="mb-0">similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+
+                <div class="mx-3 info">
+                  <div class="row row-wrapper">
+                    <div class="col-3">
+                      <div>إسم الطالب</div>
+                      <div>Student Name</div>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                      <div>{{ $transaction->student_name }}</div>
+                    </div>
+                    <div class="col-3">
+                      <div>الرقم الجامعي</div>
+                      <div>ِAcademic Number</div>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                      <div>{{ $transaction->student_id }}</div>
+                    </div>
+                  </div>
+                  <div class="row row-wrapper">
+                    <div class="col-3">
+                      <div>التخصص</div>
+                      <div>Specialization</div>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                      <div>{{ $transaction->department->department_en }}</div>
+                    </div>
+                    <div class="col-3">
+                      <div>فصل الالتحاق</div>
+                      <div>Acceptance Semester</div>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                      <div>{{ $transaction->semester }}</div>
+                    </div>
+                  </div>
+                  <div class="row row-wrapper last">
+                    <div class="col-3">
+                      <div>الكلية المحول منها </div>
+                      <div>Previous college</div>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                      <div>{{ $transaction->college->college_en }}</div>
+                    </div>
+                    <div class="col-3">
+                      <div>التخصص السابق</div>
+                      <div>Previous Specilazation</div>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                      <div>{{ $transaction->specialization->spec_en }}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+
+                <div class="mx-3 transfer">
+                  <div class="row subjects-wrapper">
+                    <div class="col-6 transferables">
+                      <h4 class="text-center">
+                        <div>المقررات المدروسة سابقاً</div>
+                        <div>Courses to be transfered </div>
+                      </h4>
+                      <hr>
+                      <div class="table-responsive">
+                        <table class="table text-center">
+                          <thead>
+                            <tr>
+                              <th>
+                                <div>الرمز</div>
+                                <div>Code</div>
+                              </th>
+                              <th>
+                                <div>اسم المقرر</div>
+                                <div>Course Name</div>
+                              </th>
+                              <th>
+                                <div>الساعات</div>
+                                <div>Hours</div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($transferables as $transferable)
+                              <tr>
+                                <td>{{ $transferable->code_en }}</td>
+                                <td>{{ $transferable->name_en }}</td>
+                                <td>{{ $transferable->hours }}</td>
+                              </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-6 subjects">
+                      <h4 class="text-center">
+                        <div>المقررات المعادلة</div>
+                        <div>Transfered Courses</div>
+                      </h4>
+                      <hr>
+                      <div class="table-responsive">
+                        <table class="table text-center">
+                          <thead>
+                            <tr>
+                              <th>
+                                <div>الرمز</div>
+                                <div>Code</div>
+                              </th>
+                              <th>
+                                <div>اسم المقرر</div>
+                                <div>Course Name</div>
+                              </th>
+                              <th>
+                                <div>الساعات</div>
+                                <div>Hours</div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($subjects as $subject)
+                              <tr>
+                                <td>{{ $subject->code_en }}</td>
+                                <td>{{ $subject->name_en }}</td>
+                                <td>{{ $subject->hours }}</td>
+                              </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {{-- ###################################################### --}}
+
+							</div>
+						</div>
+					</div>
+				</div>
+        <div class="row">
+          <div class="col d-flex flex-row-reverse">
+            <button class="btn btn-primary" id="btn">Print</button>
           </div>
         </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
+				<!-- row closed -->
+			</div>
+			<!-- Container closed -->
+		</div>
+		<!-- main-content closed -->
 @endsection
 
 
 @section('js')
-<!--Internal  Datepicker js -->
-{{-- <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script> --}}
-<!-- Internal Select2 js-->
-{{-- <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script> --}}
-<!-- Internal Jquery.mCustomScrollbar js-->
-{{-- <script src="{{URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.concat.min.js')}}"></script> --}}
-<!-- Internal Input tags js-->
-{{-- <script src="{{URL::asset('assets/plugins/inputtags/inputtags.js')}}"></script> --}}
-<!--- Tabs JS-->
-{{-- <script src="{{URL::asset('assets/plugins/tabs/jquery.multipurpose_tabcontent.js')}}"></script>
-<script src="{{URL::asset('assets/js/tabs.js')}}"></script> --}}
-<!--Internal  Clipboard js-->
-{{-- <script src="{{URL::asset('assets/plugins/clipboard/clipboard.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/clipboard/clipboard.js')}}"></script> --}}
-<!-- Internal Prism js-->
-{{-- <script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script> --}}
-
-<!-- Internal Data tables -->
-{{-- <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script> --}}
-<!--Internal  Datatable js -->
-{{-- <script src="{{URL::asset('assets/js/jquery.js')}}"></script>
-<script src="{{URL::asset('assets/js/jquery.js')}}"></script> --}}
+<script src="{{ asset('assets/js/custom/print.js') }}"></script>
 @endsection

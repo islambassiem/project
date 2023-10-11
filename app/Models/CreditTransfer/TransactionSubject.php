@@ -2,8 +2,10 @@
 
 namespace App\Models\CreditTransfer;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CreditTransfer\College;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CreditTransfer\Transaction;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TransactionSubject extends Model
 {
@@ -13,4 +15,8 @@ class TransactionSubject extends Model
   protected $fillable = [
     'transaction_id', 'subject_id', 'user_id'
   ];
+
+  public function subject(){
+    return $this->belongsTo(Transaction::class);
+  }
 }
