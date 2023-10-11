@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\CreditTransfer\Transaction;
+use App\Models\CreditTransfer\TransactionSubject;
 use App\Http\Requests\CreditTransfer\TransactionRequest;
 
 class TransactionController extends Controller
@@ -40,8 +41,29 @@ class TransactionController extends Controller
   public function store(TransactionRequest $request)
   {
     $validated = $request->validated();
-    $validated['user_id'] = auth('creditTransfer')->user()->id;
+    $user_id = auth('creditTransfer')->user()->id;
+    $validated['user_id'] = $user_id;
     Transaction::create($validated);
+    $transaction_id = DB::connection('creditTransfer')->table('transactions')->latest('created_at')->first('id');
+    $subjects = [];
+    if(isset($validated['transferable_id'])){ 
+      foreach ($validated['transferable_id'] as $id) {
+        $subjects[] = $id;
+      }
+    }
+    if(isset($validated['subject_id'])){
+      foreach ($validated['subject_id'] as $id) {
+        $subjects[] = $id;
+      }
+    }
+    foreach ($subjects as $subject) {
+      TransactionSubject::create([
+        'transaction_id' =>  $transaction_id->id,
+        'subject_id'     =>  $subject,
+        'user_id'        =>  $user_id
+      ]);
+    }
+
     return view('creditTransfer.transactions.details', [
       'transaction' => Transaction::latest('id')->first(),
       'subjects'    => DB::connection('creditTransfer')->table('subjects')->where('college_id', '>', '1')->get()
@@ -81,5 +103,12 @@ class TransactionController extends Controller
   public function destroy(string $id)
   {
     //
+  }
+
+
+  public function filterTransferables($college_id)
+  {
+    $transferables = DB::connection('creditTransfer')->table('subjects')->where('college_id', '=', $college_id)->get();
+    return json_encode($transferables);
   }
 }

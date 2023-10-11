@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use App\Models\CreditTransfer\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::group(['prefix' => 'creditTransfer'], function () {
   Route::resource('transferable', TransferableController::class);
   Route::resource('specialization', SpecilaizationController::class);
   Route::resource('transaction', TransactionController::class);
+
+  Route::post('transaction/{college_id}', [TransactionController::class, 'filterTransferables'])->name('transactionTransferable');
 });
 
 Route::get('/', function (){
@@ -78,12 +81,7 @@ Route::get('/', function (){
   //   'college_ar' => 'كلية العناية الطبية',
   //   'user_id' => 1
   // ]);
-
 });
 
-  Route::get('/', function (){
-    return view('zmultiStepFrom.index');
-  });
 
-  
 Route::get('/{page}', [AdminController::class, 'index']);

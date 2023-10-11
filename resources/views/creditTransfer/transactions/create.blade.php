@@ -32,7 +32,7 @@
               <div class="main-content-label mg-b-5 mb-3">
                 Add New Transaction
               </div>
-              <form action="{{ route('transaction.store') }}" method="POST" onsubmit="return false">
+              <form action="{{ route('transaction.store') }}" method="POST" id="form" onsubmit="return false">
                 @csrf
                 <div class="row" id="phase1">
                   <div class="col-md-10 col-lg-8 col-xl-6 mx-auto d-block">
@@ -98,7 +98,7 @@
                       </div>
                     </div>
                     <div class="row flex-row-reverse">
-                      <button class="btn btn-main-primary mt-2 mr-1" onclick="processPhase1()">Next</button>
+                      <button type="button" class="btn btn-main-primary mt-2 mr-1" onclick="processPhase1()">Next</button>
                     </div>
                   </div>
                 </div>
@@ -117,43 +117,22 @@
                           </div>
                           <div class="card-body">
                             <div class="table-responsive">
-                              <table class="table text-md-nowrap" id="example1">
+                              <table class="table table-striped mg-b-0">
                                 <thead>
                                   <tr>
-                                    <th class="wd-15p border-bottom-0">ID</th>
-                                    <th class="wd-15p border-bottom-0">Code English</th>
-                                    <th class="wd-15p border-bottom-0">Name English</th>
-                                    <th class="wd-20p border-bottom-0">Code Arabic</th>
-                                    <th class="wd-15p border-bottom-0">Name Arabic</th>
-                                    <th class="wd-10p border-bottom-0">Hours</th>
-                                    <th class="wd-25p border-bottom-0">Action</th>
+                                    <th class="border-bottom-0">ID</th>
+                                    <th class="border-bottom-0">Code English</th>
+                                    <th class="border-bottom-0">Name English</th>
+                                    <th class="border-bottom-0">Code Arabic</th>
+                                    <th class="border-bottom-0">Name Arabic</th>
+                                    <th class="border-bottom-0">Hours</th>
+                                    <th class="border-bottom-0">Action</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  @foreach ($transderables as $transderable)
-                                    <tr>
-                                      <td>{{ $transderable->id }}</td>
-                                      <td>{{ $transderable->code_en }}</td>
-                                      <td>{{ $transderable->name_en }}</td>
-                                      <td>{{ $transderable->code_ar }}</td>
-                                      <td>{{ $transderable->name_ar }}</td>
-                                      <td>{{ $transderable->hours }}</td>
-                                      <td>
-                                          <button class="btn btn-success py-0"
-                                              id="btnAdd"
-                                              data-id="{{ $transderable->id }}"
-                                              data-code="{{ $transderable->code_en }}"
-                                              data-hours="{{ $transderable->hours }}">
-                                              <i class="fa-solid fa-angles-right"
-                                              id="iAdd"
-                                              data-id="{{ $transderable->id }}"
-                                              data-code="{{ $transderable->code_en }}"
-                                              data-hours="{{ $transderable->hours }}"></i>
-                                              Add
-                                            </button>
-                                        </td>
-                                    </tr>
-                                  @endforeach
+                                <tbody id="transderables">
+                                  <tr>
+                                    <td colspan="7" class="alert alert-danger text-center mt-3"><span>You have to choose the college first</span></td>
+                                  </tr>
                                 </tbody>
                               </table>
                             </div>
@@ -185,8 +164,8 @@
                                   </tr>
                                 </thead>
                                 <tbody id="tbody">
-                                  <tr id="empty">
-                                    <td colspan="4" class="alert alert-danger text-center mt-3"><span>There are no subects added yet</span></td>
+                                  <tr>
+                                    <td colspan="4" class="alert alert-danger text-center mt-3" id="empty"><span>There are no subects added yet</span></td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -199,15 +178,116 @@
                   </div>
                   <div class="row justify-content-between">
                     <div class="col-6 d-flex justify-content-center">
-                      <button class="btn btn-secondary justify-content-end">Back</button>
+                      <button class="btn btn-secondary justify-content-end" onclick="back1()">Back</button>
                     </div>
                     <div class="col-6 d-flex justify-content-center">
-                      <button class="btn btn-primary">Next</button>
+                      <button type="button" class="btn btn-primary" onclick="processPhase2()">Next</button>
                     </div>
                   </div>
                 </div>
-                <div class="row" id="phase3">
-                  Phase 3
+                <div id="phase3" class="flex-column">
+                  <div class="row">
+                    <div class="col-8">
+                      {{-- ######################## --}}
+                      <div class="col-xl-12">
+                        <div class="card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <h4 class="card-title mg-b-0">Subjects</h4>
+                              {{-- <i class="mdi mdi-dots-horizontal text-gray"></i> --}}
+                            </div>
+                            <p class="tx-12 tx-gray-500 mb-2">The subjects the students are going to study</p>
+                          </div>
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table table-striped mg-b-0 ">
+                                <thead>
+                                  <tr>
+                                    <th class="border-bottom-0">ID</th>
+                                    <th class="border-bottom-0">Code English</th>
+                                    <th class="border-bottom-0">Name English</th>
+                                    <th class="border-bottom-0">Code Arabic</th>
+                                    <th class="border-bottom-0">Name Arabic</th>
+                                    <th class="border-bottom-0">Hours</th>
+                                    <th class="border-bottom-0">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="subjects">
+                                  @foreach ($subjects as $subject)
+                                    <tr>
+                                      <td>{{ $subject->id }}</td>
+                                      <td>{{ $subject->code_en }}</td>
+                                      <td>{{ $subject->name_en }}</td>
+                                      <td>{{ $subject->code_ar }}</td>
+                                      <td>{{ $subject->name_ar }}</td>
+                                      <td>{{ $subject->hours }}</td>
+                                      <td>
+                                          <button class="btn btn-success py-0"
+                                              id="btnAddSubject"
+                                              data-id="{{ $subject->id }}"
+                                              data-code="{{ $subject->code_en }}"
+                                              data-hours="{{ $subject->hours }}">
+                                              <i class="fa-solid fa-angles-right"
+                                              id="iAddSubject"
+                                              data-id="{{ $subject->id }}"
+                                              data-code="{{ $subject->code_en }}"
+                                              data-hours="{{ $subject->hours }}"></i>
+                                              Add
+                                            </button>
+                                        </td>
+                                    </tr>
+                                  @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {{-- ######################## --}}
+                    </div>
+                    <div class="col-4">
+                      {{-- ####################################### --}}
+                      <div class="col-xl-12">
+                        <div class="card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <h4 class="card-title mg-b-0">Additons</h4>
+                              <span class="btn btn-info" id="totalHoursSubjects">0</span>
+                            </div>
+                            <p class="tx-12 tx-gray-500 mb-2">The subjects to be added to credit transfer.</p>
+                          </div>
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table mg-b-0 text-md-nowrap" id="addSubjects">
+                                <thead>
+                                  <tr>
+                                    <th>ID</th>
+                                    <th>Code English</th>
+                                    <th>Hours</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="tbody">
+                                  <tr>
+                                    <td colspan="4" class="alert alert-danger text-center mt-3" id="emptySubjects"><span>There are no subects added yet</span></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {{-- ####################################### --}}
+                    </div>
+                  </div>
+                  <div class="row justify-content-between">
+                    <div class="col-6 d-flex justify-content-center">
+                      <a class="btn btn-secondary justify-content-end" onclick="back2()">Back</a>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center">
+                      <button type="submit" form="form" class="btn btn-primary" onclick="submitForm()">Submit</button>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
@@ -246,4 +326,60 @@
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 {{-- Custom --}}
 <script src="{{URL::asset('assets/js/custom/create_transaction.js')}}"></script>
+<script>
+
+$(document).ready(function() {
+  $('select[name="college_id"]').on('change', function (){
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var college_id = $(this).val();
+    if(college_id){
+      $.ajax({
+        url: "{{ URL::to('creditTransfer/transaction') }}/" + college_id,
+        method: "POST",
+        dataType: "json",
+        success: function(data){
+          $('#transderables').empty();
+          for (let i = 0; i < data.length; i++) {
+            const transferable = data[i];
+            var table = document.getElementById('transderables');
+            var row = table.insertRow();
+            var c1 = row.insertCell(0);
+            var c2 = row.insertCell(1);
+            var c3 = row.insertCell(2);
+            var c4 = row.insertCell(3);
+            var c5 = row.insertCell(4);
+            var c6 = row.insertCell(5);
+            var c7 = row.insertCell(6);
+            c1.innerText = data[i].id;
+            c2.innerText = data[i].code_en;
+            c3.innerText = data[i].name_en;
+            c4.innerText = data[i].code_ar;
+            c5.innerText = data[i].name_ar;
+            c6.innerText = data[i].hours;
+            c7.innerHTML = `
+              <button class="btn btn-success py-0"
+                id="btnAdd"
+                data-id="${data[i].id}"
+                data-code="${data[i].code_en}"
+                data-hours="${data[i].hours}">
+                <i class="fa-solid fa-angles-right"
+                id="iAdd"
+                data-id="${data[i].id}"
+                data-code="${data[i].code_en}"
+                data-hours="${data[i].hours}"></i>
+                Add
+              </button>`
+          }
+        }
+      });
+    }else{
+      console.log('Something went wrong');
+    }
+  });
+});
+</script>
 @endsection

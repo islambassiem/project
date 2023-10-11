@@ -15,7 +15,7 @@ class SubjectController extends Controller
   public function index()
   {
     return view('creditTransfer.subjects.index', [
-      'subjects' => Subject::with('user')->latest()->get()
+      'subjects' => Subject::with('user')->where('college_id', '1')->latest()->get()
     ]);
   }
 

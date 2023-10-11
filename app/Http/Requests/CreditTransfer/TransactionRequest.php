@@ -27,7 +27,9 @@ class TransactionRequest extends FormRequest
       'semester'        => 'required|numeric|between:111,999',
       'college_id'         => 'required',
       'specialization_id'  => 'required',
-      'department_id'      => 'required'
+      'department_id'      => 'required',
+      'transferable_id'    => 'array',
+      'subject_id'         => 'array' 
     ];
   }
 
