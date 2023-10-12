@@ -46,3 +46,8 @@
   border-top: 2px black double;
 }
 
+.side-title{
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 2.5;
+}

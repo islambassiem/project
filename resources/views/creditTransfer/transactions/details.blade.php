@@ -6,6 +6,8 @@
 <link href="{{URL::asset('assets/plugins/inputtags/inputtags.css')}}" rel="stylesheet">
 <!--- Custom-scroll -->
 <link href="{{URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.css')}}" rel="stylesheet">
+{{-- Bootstrap --}}
+<link rel="stylesheet" href="{{URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{ URL::asset('assets/css/custom/transaction.css') }}">
 @endsection
 
@@ -52,14 +54,14 @@
 
                 <div class="mx-3 info">
                   <div class="row row-wrapper">
-                    <div class="col-3">
+                    <div class="col-3 side-title">
                       <div>إسم الطالب</div>
                       <div>Student Name</div>
                     </div>
                     <div class="col-3 d-flex justify-content-center align-items-center">
                       <div>{{ $transaction->student_name }}</div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 side-title">
                       <div>الرقم الجامعي</div>
                       <div>ِAcademic Number</div>
                     </div>
@@ -68,14 +70,14 @@
                     </div>
                   </div>
                   <div class="row row-wrapper">
-                    <div class="col-3">
+                    <div class="col-3 side-title">
                       <div>التخصص</div>
                       <div>Specialization</div>
                     </div>
                     <div class="col-3 d-flex justify-content-center align-items-center">
                       <div>{{ $transaction->department->department_en }}</div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 side-title">
                       <div>فصل الالتحاق</div>
                       <div>Acceptance Semester</div>
                     </div>
@@ -84,14 +86,14 @@
                     </div>
                   </div>
                   <div class="row row-wrapper last">
-                    <div class="col-3">
+                    <div class="col-3 side-title">
                       <div>الكلية المحول منها </div>
                       <div>Previous college</div>
                     </div>
                     <div class="col-3 d-flex justify-content-center align-items-center">
                       <div>{{ $transaction->college->college_en }}</div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 side-title">
                       <div>التخصص السابق</div>
                       <div>Previous Specilazation</div>
                     </div>
@@ -101,7 +103,7 @@
                   </div>
                 </div>
 
-                <div class="mx-3 transfer">
+                <div class="mx-3 transfer side-title">
                   <div class="row subjects-wrapper">
                     <div class="col-6 transferables">
                       <h4 class="text-center">
@@ -196,6 +198,15 @@
                 </div>
 
                 {{-- ###################################################### --}}
+
+                <div class="row my-5">
+                  <div class="col-6">
+                    <div><h5>Department Head: .............................</h5></div>
+                  </div>
+                  <div class="col-6">
+                    <h5 class="ml-4">Dean's Singature: .............................</h5>
+                  </div>
+                </div>
 
 							</div>
 						</div>
