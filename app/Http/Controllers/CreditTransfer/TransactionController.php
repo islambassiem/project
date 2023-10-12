@@ -71,6 +71,7 @@ class TransactionController extends Controller
       ->where('college_id', '>', '1')
       ->get();
 
+
       $subjects = DB::connection('creditTransfer')
       ->table('subjects')
       ->join('transactions_subjects', 'transactions_subjects.subject_id', '=', 'subjects.id')
@@ -78,10 +79,28 @@ class TransactionController extends Controller
       ->where('college_id', '=', '1')
       ->get();
 
+      $transferables_hours = DB::connection('creditTransfer')
+      ->table('subjects')
+      ->join('transactions_subjects', 'transactions_subjects.subject_id', '=', 'subjects.id')
+      ->where('transactions_subjects.transaction_id', '=',  $transaction->id)
+      ->where('college_id', '>', '1')
+      ->sum('hours');
+
+      $subjects_hours = DB::connection('creditTransfer')
+      ->table('subjects')
+      ->join('transactions_subjects', 'transactions_subjects.subject_id', '=', 'subjects.id')
+      ->where('transactions_subjects.transaction_id', '=',  $transaction->id)
+      ->where('college_id', '=', '1')
+      ->sum('hours');
+
     return view('creditTransfer.transactions.details', [
       'transferables' => $transferables,
       'transaction'   => $transaction,
-      'subjects'      => $subjects]);
+      'subjects'      => $subjects,
+      'subjects_hours' => $subjects_hours,
+      'transferables_hours' => $transferables_hours
+
+    ]);
   }
 
   /**
@@ -103,10 +122,26 @@ class TransactionController extends Controller
       ->where('subjects.college_id', '>' , '1')
       ->get();
 
+      $transferables_hours = DB::connection('creditTransfer')
+      ->table('transactions_subjects')
+      ->join('subjects', 'subjects.id', '=' , 'transactions_subjects.subject_id')
+      ->where('transaction_id', $transaction->id)
+      ->where('subjects.college_id', '>' , '1')
+      ->sum('hours');
+
+      $subjects_hours = DB::connection('creditTransfer')
+      ->table('transactions_subjects')
+      ->join('subjects', 'subjects.id', '=' , 'transactions_subjects.subject_id')
+      ->where('transaction_id', $transaction->id)
+      ->where('subjects.college_id', '=' , '1')
+      ->sum('hours');
+
     return view('creditTransfer.transactions.details', [
       'transaction'    => $transaction,
       'subjects'       => $subjects,
-      'transferables'  => $transferables
+      'transferables'  => $transferables,
+      'transferables_hours' => $transferables_hours,
+      'subjects_hours' => $subjects_hours
     ]);
   }
 

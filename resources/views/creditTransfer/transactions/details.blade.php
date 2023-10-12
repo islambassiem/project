@@ -135,6 +135,15 @@
                                 <td>{{ $transferable->hours }}</td>
                               </tr>
                             @endforeach
+                            <tr class="total">
+                              <td colspan="2">
+                                <div class="d-flex justify-content-around">
+                                  <div>Total</div>
+                                  <div>المجموع</div>
+                                </div>
+                              </td>
+                              <td>{{ $transferables_hours }}</td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -171,6 +180,14 @@
                                 <td>{{ $subject->hours }}</td>
                               </tr>
                             @endforeach
+                            <tr class="total">
+                              <td colspan="2">
+                                <div class="d-flex justify-content-around">
+                                  <div>Total</div>
+                                  <div>المجموع</div>
+                                </div>
+                              </td>
+                              <td>{{ $subjects_hours }}</td>
                           </tbody>
                         </table>
                       </div>

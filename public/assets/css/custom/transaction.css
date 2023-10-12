@@ -39,3 +39,10 @@
 }
 
 
+.total{
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  border-top: 2px black double;
+}
+
