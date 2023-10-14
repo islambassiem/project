@@ -1,29 +1,58 @@
 @extends('creditTransfer.layouts.master')
 @section('css')
-<!-- Internal Data table css -->
-<link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 @endsection
-@section('page-header')
-  <!-- breadcrumb -->
-  <div class="breadcrumb-header justify-content-between">
-    <div class="my-auto">
-      <div class="d-flex">
-        <h4 class="content-title mb-0 my-auto">Specializations</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+
+@section('content')
+<div class="body position-relative p-3">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 class="position-relative">Specializations</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex flex-row-reverse">
+        <a href="{{ route('specialization.create') }}" class="btn btn-primary">Add Specialization</a>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="example" class="table key-buttons text-md-nowrap">
+                @if (count($specializations) == 0)
+                  <div class="alert alert-danger">There are no Specializations</div>
+                @else
+                  <thead>
+                    <tr>
+                      <th class="border-bottom-0">English Name</th>
+                      <th class="border-bottom-0">Arabic Name</th>
+                      <th class="border-bottom-0" style="width: 33%">Added by</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($specializations as $specialization)
+                      <tr>
+                        <td>{{ $specialization->spec_en }}</td>
+                        <td>{{ $specialization->spec_ar }}</td>
+                        <td>{{ $specialization->user->name }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                @endif
+              </table>
+            </div>
+          <div>
+        </div>
       </div>
     </div>
   </div>
-  <!-- breadcrumb -->
-@endsection
-@section('content')
-  <!-- row opened -->
-  <div class="row row-sm">
-    <!--div-->
+</div>
+
+
+
+  {{-- <div class="row row-sm">
     <div class="col-xl-12">
       <div class="card mg-b-20">
         <div class="card-header pb-0">
@@ -70,33 +99,10 @@
         </div>
       </div>
     </div>
-    <!--/div-->
 
   </div>
-  <!-- /row -->
 </div>
-<!-- Container closed -->
-</div>
-<!-- main-content closed -->
+</div> --}}
 @endsection
 @section('js')
-<!-- Internal Data tables -->
-<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
-<!--Internal  Datatable js -->
-<script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 @endsection
