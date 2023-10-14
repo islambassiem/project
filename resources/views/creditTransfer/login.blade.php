@@ -1,80 +1,49 @@
-@extends('creditTransfer.layouts.master2')
-@section('css')
-<!-- Sidemenu-respoansive-tabs css -->
-<link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}" rel="stylesheet">
-@endsection
-@section('content')
-		<div class="container-fluid">
-			<div class="row no-gutter">
-				<!-- The image half -->
-				<div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
-					<div class="row wd-100p mx-auto text-center">
-						<div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-							<img src="{{URL::asset('assets/img/media/img.jpeg')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
-						</div>
-					</div>
-				</div>
-				<!-- The content half -->
-				<div class="col-md-6 col-lg-6 col-xl-5 bg-white">
-					<div class="login d-flex align-items-center py-2">
-						<!-- Demo content-->
-						<div class="container p-0">
-							<div class="row">
-								<div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
-									<div class="card-sigin">
-										{{-- <div class="mb-5 d-flex"> <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Va<span>le</span>x</h1></div> --}}
-										<div class="card-sigin">
-											<div class="main-signup-header">
-												<h2>Welcome back!</h2>
-												<h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
-                        @if (session()->has('error'))
-                          <div class="alert alert-danger">
-                            {{ session()->get('error') }}
-                          </div>
-                        @endif
-												<form action="{{ route('credit.login') }}" method="POST">
-                          @csrf
-													<div class="form-group">
-														<label>Employee ID</label>
-                            <input class="form-control" placeholder="Enter your employee ID" type="text" name="empid" value="{{ old('empid') }}">
-                            @error('empid')
-                              <div class="alert alert-danger my-2">
-                                {{ $message }}
-                              </div>
-                            @enderror
-													</div>
-													<div class="form-group">
-														<label>Password</label>
-                            <input class="form-control" placeholder="Enter your password" type="password" name="password">
-                            @error('password')
-                              <div class="alert alert-danger my-2">
-                                {{ $message }}
-                              </div>
-                            @enderror
-													</div><button class="btn btn-main-primary btn-block">Sign In</button>
-													{{-- <div class="row row-xs">
-														<div class="col-sm-6">
-															<button class="btn btn-block"><i class="fab fa-facebook-f"></i> Signup with Facebook</button>
-														</div>
-														<div class="col-sm-6 mg-t-10 mg-sm-t-0">
-															<button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> Signup with Twitter</button>
-														</div>
-													</div> --}}
-												</form>
-												<div class="main-signin-footer mt-3">
-													<p><a href="">Forgot password?</a></p>
-													{{-- <p>Don't have an account? <a href="{{ url('/' . $page='signup') }}">Create an Account</a></p> --}}
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div><!-- End -->
-					</div>
-				</div><!-- End -->
-			</div>
-		</div>
-@endsection
-@section('js')
-@endsection
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <script src="{{ asset('assets/plugins/js/color-modes.js') }}"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.118.2">
+    <link href="{{ asset('assets/plugins/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/css/signin-inline.css') }}">
+    <link href="{{ asset('assets/plugins/css/sign-in.css') }}" rel="stylesheet">
+    <title>Sign In </title>
+  </head>
+  <body class="d-flex align-items-center py-4 bg-body-tertiary">
+    <main class="form-signin w-100 m-auto">
+      @if (session()->has('error'))
+        <div class="alert alert-danger">
+          {{ session()->get('error') }}
+        </div>
+      @endif
+      <form action="{{ route('credit.login') }}" method="POST">
+        @csrf
+        <img class="mb-4 m-auto d-block" src="{{ asset('assets/imgs/logo.png') }}" alt="">
+        <h1 class="h3 mb-3 fw-normal text-center">Credit Transfer System</h1>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="empid">
+          <label for="floatingInput">Employee ID</label>
+          @error('empid')
+          <div class="alert alert-danger my-2">
+            {{ $message }}
+          </div>
+        @enderror
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+          <label for="floatingPassword">Password</label>
+          @error('password')
+          <div class="alert alert-danger my-2">
+            {{ $message }}
+          </div>
+        @enderror
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+      </form>
+    </main>
+    <script src="{{ asset('assets/plugins/js/bootstrap.bundle.min.js') }}"></script>
+    </body>
+</html>
