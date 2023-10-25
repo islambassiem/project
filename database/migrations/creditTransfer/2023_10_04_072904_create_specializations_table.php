@@ -13,8 +13,7 @@ return new class extends Migration
   {
     Schema::create('specializations', function (Blueprint $table) {
       $table->id();
-      $table->string('spec_en');
-      $table->string('spec_ar');
+      $table->string('name');
       $table->foreignId('user_id')->constrained();
       $table->timestamps();
     });

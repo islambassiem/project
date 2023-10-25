@@ -13,5 +13,5 @@ class Department extends Model
 
   protected $table = 'departments';
 
-  protected $fillable = ['department_en', 'department_ar'];
+  protected $fillable = ['name'];
 }

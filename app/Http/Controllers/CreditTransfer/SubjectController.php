@@ -33,21 +33,14 @@ class SubjectController extends Controller
   public function store(Request $request)
   {
     $validated = $request->validate([
-      'name_en' => ['required', 'unique:App\Models\CreditTransfer\Subject,name_en', 'max:255'],
-      'name_ar' => ['required', 'unique:App\Models\CreditTransfer\Subject,name_ar', 'max:255'],
-      'code_en' => ['required', 'unique:App\Models\CreditTransfer\Subject,code_en', 'max:255'],
-      'code_ar' => ['required', 'unique:App\Models\CreditTransfer\Subject,code_ar', 'max:255'],
+      'name' => ['required', 'unique:App\Models\CreditTransfer\Subject,name', 'max:255'],
+      'code' => ['required', 'unique:App\Models\CreditTransfer\Subject,code', 'max:255'],
       'hours'   => ['required', 'min:0']
     ], [
-      'name_en.required' => 'The subject English name is required',
-      'name_en.unique' => 'This subject already exists',
-      'name_ar.required' => 'The subject Arabic name is required',
-      'name_ar.unique' => 'The subject already exists ',
-
-      'code_en.required' => 'The English code is required',
-      'code_ar.required' => 'The Arabic code is required',
-      'code_en.unique' => 'The subject already exists',
-      'code_ar.unique' => 'The subject already exists',
+      'name.required' => 'The subject English name is required',
+      'name.unique' => 'This subject already exists',
+      'code.required' => 'The English code is required',
+      'name.unique' => 'The subject already exists',
 
       'hours.required' => 'The credit hours is required',
       'hours.min' => 'Hours cannot be in minus',
@@ -82,21 +75,16 @@ class SubjectController extends Controller
   public function update(Request $request, string $id)
   {
     $validated = $request->validate([
-      'name_en' => ['required', 'unique:App\Models\CreditTransfer\Subject,name_en', 'max:255'],
-      'name_ar' => ['required', 'unique:App\Models\CreditTransfer\Subject,name_ar', 'max:255'],
-      'code_en' => ['required', 'unique:App\Models\CreditTransfer\Subject,code_en', 'max:255'],
-      'code_ar' => ['required', 'unique:App\Models\CreditTransfer\Subject,code_ar', 'max:255'],
+      'name' => ['required', 'unique:App\Models\CreditTransfer\Subject,name', 'max:255'],
+      'code' => ['required', 'unique:App\Models\CreditTransfer\Subject,code', 'max:255'],
       'hours'   => ['required', 'min:0']
     ], [
-      'name_en.required' => 'The subject English name is required',
-      'name_en.unique' => 'This subject already exists',
-      'name_ar.required' => 'The subject Arabic name is required',
+      'name.required' => 'The subject name is required',
+      'name.unique' => 'This subject already exists',
       'name_ar.unique' => 'The subject already exists ',
 
-      'code_en.required' => 'The English code is required',
-      'code_ar.required' => 'The Arabic code is required',
-      'code_en.unique' => 'The subject already exists',
-      'code_ar.unique' => 'The subject already exists',
+      'code.required' => 'The English code is required',
+      'code.unique' => 'The subject already exists',
 
       'hours.required' => 'The credit hours is required',
       'hours.min' => 'Hours cannot be in minus',

@@ -50,16 +50,14 @@
               @else
                 <thead>
                   <tr>
-                    <th class="border-bottom-0">English Name</th>
-                    <th class="border-bottom-0">Arabic Name</th>
+                    <th class="border-bottom-0">Name</th>
                     <th class="border-bottom-0" style="width: 33%">Added by</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($specializations as $specialization)
                     <tr>
-                      <td>{{ $specialization->spec_en }}</td>
-                      <td>{{ $specialization->spec_ar }}</td>
+                      <td>{{ $specialization->name }}</td>
                       <td>{{ $specialization->user->name }}</td>
                     </tr>
                   @endforeach

@@ -30,58 +30,39 @@
                     <div class="card card-body pd-20 pd-md-40 border shadow-none">
                       <h5 class="card-title mg-b-20">Your Subject Details</h5>
                       <div class="form-group">
-                        <label class="main-content-label tx-11 tx-medium tx-gray-600">English Name</label>
-                        <input class="form-control" type="text" name="name_en" value="{{ old('name_en') }}">
-                          @error('name_en')
+                        <label class="main-content-label tx-11 tx-medium tx-gray-600">Name</label>
+                        <input class="form-control" type="text" name="name" value="{{ old('name') }}">
+                          @error('name')
                             <div class="alert alert-danger mt-2">
                               {{ $message }}
                             </div>
                           @enderror
                       </div>
                       <div class="form-group">
-                        <label class="main-content-label tx-11 tx-medium tx-gray-600">Arabic Name</label>
-                        <input class="form-control" type="text" name="name_ar" value="{{ old('name_ar') }}">
-                        @error('name_en')
+                        <label class="main-content-label tx-11 tx-medium tx-gray-600">College</label>
+                        <select name="college_id" class="form-control select2">
+                          <option label="Choose a college"></option>
+                          @foreach ($colleges as $college)
+                            <option value="{{ $college->id }}">{{ $college->name }}</option>
+                          @endforeach
+                        </select>
+                        @error('college_id')
                           <div class="alert alert-danger mt-2">
                             {{ $message }}
                           </div>
                         @enderror
                       </div>
                       <div class="form-group">
-                        <label class="main-content-label tx-11 tx-medium tx-gray-600">College</label>
-                        <select name="college_id" class="form-control select2">
-                          <option label="Choose a college"></option>
-                          @foreach ($colleges as $college)
-                            <option value="{{ $college->id }}">{{ $college->college_en }}</option>
-                          @endforeach
-                        </select>
-                        @error('college_id')
-                        <div class="alert alert-danger mt-2">
-                          {{ $message }}
-                        </div>
-                      @enderror
-                      </div>
-
-                      <div class="form-group">
                         <div class="row row-sm">
                           <div class="col-sm-8">
                             <div class="row row-sm">
                               <div class="col-sm-6">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">English Code</label>
-                                <input class="form-control" type="text" name="code_en"  value="{{ old('code_en') }}">
-                                @error('code_en')
+                                <label class="main-content-label tx-11 tx-medium tx-gray-600">Code</label>
+                                <input class="form-control" type="text" name="code"  value="{{ old('code') }}">
+                                @error('code')
                                   <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                   </div>
-                                @enderror
-                              </div>
-                              <div class="col-sm-6 mg-t-10 mg-sm-t-0">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">Arabic Code</label>
-                                <input class="form-control" type="text" name="code_ar"  value="{{ old('code_ar') }}">
-                                @error('code_ar')
-                                <div class="alert alert-danger mt-2">
-                                  {{ $message }}
-                                </div>
                                 @enderror
                               </div>
                             </div>

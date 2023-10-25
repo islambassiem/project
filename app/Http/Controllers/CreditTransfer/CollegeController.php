@@ -32,13 +32,10 @@ class CollegeController extends Controller
   public function store(Request $request)
   {
     $validated = $request->validate([
-      'college_en' => ['required', 'unique:App\Models\CreditTransfer\College,college_en'],
-      'college_ar' => ['required', 'unique:App\Models\CreditTransfer\College,college_ar'],
+      'name' => ['required', 'unique:App\Models\CreditTransfer\College,name'],
     ], [
-      'college_en.required' => 'The college name in English is required',
-      'college_en.unique' => 'The college already exists',
-      'college_ar.required' => 'The college name in Arabic is required',
-      'college_ar.unique' => 'The college already exists',
+      'name.required' => 'The college name is required',
+      'name.unique' => 'The college already exists',
     ]);
     $validated['user_id'] = auth('creditTransfer')->user()->id;
     College::create($validated);

@@ -75,7 +75,7 @@
                       <div>Specialization</div>
                     </div>
                     <div class="col-3 d-flex justify-content-center align-items-center">
-                      <div>{{ $transaction->department->department_en }}</div>
+                      <div>{{ $transaction->department->name }}</div>
                     </div>
                     <div class="col-3 side-title">
                       <div>فصل الالتحاق</div>
@@ -91,14 +91,14 @@
                       <div>Previous college</div>
                     </div>
                     <div class="col-3 d-flex justify-content-center align-items-center">
-                      <div>{{ $transaction->college->college_en }}</div>
+                      <div>{{ $transaction->college->name }}</div>
                     </div>
                     <div class="col-3 side-title">
                       <div>التخصص السابق</div>
                       <div>Previous Specilazation</div>
                     </div>
                     <div class="col-3 d-flex justify-content-center align-items-center">
-                      <div>{{ $transaction->specialization->spec_en }}</div>
+                      <div>{{ $transaction->specialization->name }}</div>
                     </div>
                   </div>
                 </div>
@@ -132,8 +132,8 @@
                           <tbody>
                             @foreach ($transferables as $transferable)
                               <tr>
-                                <td>{{ $transferable->code_en }}</td>
-                                <td>{{ $transferable->name_en }}</td>
+                                <td>{{ $transferable->code }}</td>
+                                <td>{{ $transferable->name }}</td>
                                 <td>{{ $transferable->hours }}</td>
                               </tr>
                             @endforeach
@@ -177,8 +177,8 @@
                           <tbody>
                             @foreach ($subjects as $subject)
                               <tr>
-                                <td>{{ $subject->code_en }}</td>
-                                <td>{{ $subject->name_en }}</td>
+                                <td>{{ $subject->code }}</td>
+                                <td>{{ $subject->name }}</td>
                                 <td>{{ $subject->hours }}</td>
                               </tr>
                             @endforeach

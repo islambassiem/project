@@ -80,7 +80,7 @@
                           <select class="form-control select2" name="specialization_id">
                             <option label="Choose specialization"></option>
                             @foreach ($specializations as $specialization)
-                              <option value="{{ $specialization->id }}"  @selected(old('specialization_id') == $specialization->id) >{{ $specialization->spec_en }}</option>
+                              <option value="{{ $specialization->id }}"  @selected(old('specialization_id') == $specialization->id) >{{ $specialization->name }}</option>
                             @endforeach
                           </select>
                         </div>
@@ -91,7 +91,7 @@
                           <select class="form-control select2" name="department_id">
                             <option label="Choose department"></option>
                             @foreach ($departments as $department)
-                              <option value="{{ $department->id }}" @selected(old('department_id') == $department->id) >{{ $department->department_en }}</option>
+                              <option value="{{ $department->id }}" @selected(old('department_id') == $department->id) >{{ $department->name }}</option>
                             @endforeach
                           </select>
                         </div>
@@ -121,10 +121,8 @@
                                 <thead>
                                   <tr>
                                     <th class="border-bottom-0">ID</th>
-                                    <th class="border-bottom-0">Code English</th>
-                                    <th class="border-bottom-0">Name English</th>
-                                    <th class="border-bottom-0">Code Arabic</th>
-                                    <th class="border-bottom-0">Name Arabic</th>
+                                    <th class="border-bottom-0">Code</th>
+                                    <th class="border-bottom-0">Name</th>
                                     <th class="border-bottom-0">Hours</th>
                                     <th class="border-bottom-0">Action</th>
                                   </tr>
@@ -158,7 +156,7 @@
                                 <thead>
                                   <tr>
                                     <th>ID</th>
-                                    <th>Code English</th>
+                                    <th>Code</th>
                                     <th>Hours</th>
                                     <th>Action</th>
                                   </tr>
@@ -204,10 +202,8 @@
                                 <thead>
                                   <tr>
                                     <th class="border-bottom-0">ID</th>
-                                    <th class="border-bottom-0">Code English</th>
-                                    <th class="border-bottom-0">Name English</th>
-                                    <th class="border-bottom-0">Code Arabic</th>
-                                    <th class="border-bottom-0">Name Arabic</th>
+                                    <th class="border-bottom-0">Code</th>
+                                    <th class="border-bottom-0">Name</th>
                                     <th class="border-bottom-0">Hours</th>
                                     <th class="border-bottom-0">Action</th>
                                   </tr>
@@ -216,21 +212,19 @@
                                   @foreach ($subjects as $subject)
                                     <tr>
                                       <td>{{ $subject->id }}</td>
-                                      <td>{{ $subject->code_en }}</td>
-                                      <td>{{ $subject->name_en }}</td>
-                                      <td>{{ $subject->code_ar }}</td>
-                                      <td>{{ $subject->name_ar }}</td>
+                                      <td>{{ $subject->code }}</td>
+                                      <td>{{ $subject->name }}</td>
                                       <td>{{ $subject->hours }}</td>
                                       <td>
                                           <button class="btn btn-success py-0"
                                               id="btnAddSubject"
                                               data-id="{{ $subject->id }}"
-                                              data-code="{{ $subject->code_en }}"
+                                              data-code="{{ $subject->code }}"
                                               data-hours="{{ $subject->hours }}">
                                               <i class="fa-solid fa-angles-right"
                                               id="iAddSubject"
                                               data-id="{{ $subject->id }}"
-                                              data-code="{{ $subject->code_en }}"
+                                              data-code="{{ $subject->code }}"
                                               data-hours="{{ $subject->hours }}"></i>
                                               Add
                                             </button>
@@ -352,15 +346,11 @@ $(document).ready(function() {
             var c3 = row.insertCell(2);
             var c4 = row.insertCell(3);
             var c5 = row.insertCell(4);
-            var c6 = row.insertCell(5);
-            var c7 = row.insertCell(6);
             c1.innerText = data[i].id;
-            c2.innerText = data[i].code_en;
-            c3.innerText = data[i].name_en;
-            c4.innerText = data[i].code_ar;
-            c5.innerText = data[i].name_ar;
-            c6.innerText = data[i].hours;
-            c7.innerHTML = `
+            c2.innerText = data[i].code;
+            c3.innerText = data[i].name;
+            c4.innerText = data[i].hours;
+            c5.innerHTML = `
               <button class="btn btn-success py-0"
                 id="btnAdd"
                 data-id="${data[i].id}"

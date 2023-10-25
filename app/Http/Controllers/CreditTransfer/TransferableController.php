@@ -33,23 +33,19 @@ class TransferableController extends Controller
   public function store(Request $request)
   {
     $validated = $request->validate([
-      'name_en'     => ['required', 'max:100'],
-      'name_ar'     => ['required', 'max:100'],
-      'code_en'     => ['required', 'max:100'],
-      'code_ar'     => ['required', 'max:100'],
+      'name'        => ['required', 'max:100'],
+      'code'        => ['required', 'max:100'],
       'college_id'  => ['required'],
       'hours'       => ['required', 'min:0'],
     ], [
-      'name_en.required' => 'The subject English name is required',
-      'name_ar.required' => 'The subject Arabic name is required',
+      'name.required' => 'The subject name is required',
 
-      'code_en.required' => 'The English code is required',
-      'code_ar.required' => 'The Arabic code is required',
+      'code.required' => 'The Code is required',
 
       'hours.required' => 'The credit hours is required',
       'hours.min' => 'Hours cannot be in minus',
 
-      'college_id' => 'You must select the colleg the subject belongs to'
+      'college_id' => 'You must select the college the subject belongs to'
     ]);
     $validated['user_id'] = auth('creditTransfer')->user()->id;
     Subject::create($validated);

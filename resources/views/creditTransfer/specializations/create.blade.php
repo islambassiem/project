@@ -31,21 +31,12 @@
                       <h5 class="card-title mg-b-20">Your spec Details</h5>
                       <div class="form-group">
                         <label class="main-content-label tx-11 tx-medium tx-gray-600">English Name</label>
-                        <input class="form-control" type="text" name="spec_en" value="{{ old('spec_en') }}">
-                          @error('spec_en')
+                        <input class="form-control" type="text" name="name" value="{{ old('name') }}">
+                          @error('name')
                             <div class="alert alert-danger mt-2">
                               {{ $message }}
                             </div>
                           @enderror
-                      </div>
-                      <div class="form-group">
-                        <label class="main-content-label tx-11 tx-medium tx-gray-600">Arabic Name</label>
-                        <input class="form-control" type="text" name="spec_ar" value="{{ old('spec_ar') }}">
-                        @error('spec_ar')
-                          <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                          </div>
-                        @enderror
                       </div>
                       <div class="form-group">
                       </div>

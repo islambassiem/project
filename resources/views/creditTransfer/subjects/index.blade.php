@@ -50,10 +50,8 @@
               @else
                 <thead>
                   <tr>
-                    <th class="border-bottom-0">English Name</th>
-                    <th class="border-bottom-0">Arabic Name</th>
-                    <th class="border-bottom-0">English Code</th>
-                    <th class="border-bottom-0">Arabic Code</th>
+                    <th class="border-bottom-0">Name</th>
+                    <th class="border-bottom-0">Code</th>
                     <th class="border-bottom-0">Hours</th>
                     <th class="border-bottom-0">Added by</th>
                   </tr>
@@ -61,20 +59,11 @@
                 <tbody>
                   @foreach ($subjects as $subject)
                     <tr>
-                      <td>{{ $subject->name_en }}</td>
-                      <td>{{ $subject->name_ar }}</td>
-                      <td>{{ $subject->code_en }}</td>
-                      <td>{{ $subject->code_ar }}</td>
+                      <td>{{ $subject->name }}</td>
+                      <td>{{ $subject->code }}</td>
                       <td>{{ $subject->hours }}</td>
                       <td>{{ $subject->user->name }}</td>
-                      {{-- <a href="{{ route('subject.edit', $subject->id) }}" class="btn btn-info"> <i class="fa-solid fa-user-pen"></i>Edit</a> --}}
-                      {{-- <td>
-                        <form action="{{ route('subject.destroy', $subject->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                      </td> --}}
+
                     </tr>
                   @endforeach
                 </tbody>

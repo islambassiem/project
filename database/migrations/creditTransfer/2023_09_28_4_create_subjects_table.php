@@ -13,10 +13,8 @@ return new class extends Migration
   {
     Schema::create('subjects', function (Blueprint $table) {
       $table->id();
-      $table->string('name_en', 100);
-      $table->string('code_en', 100);
-      $table->string('name_ar', 100);
-      $table->string('code_ar', 100);
+      $table->string('name', 100);
+      $table->string('code', 100);
       $table->smallInteger('hours');
       $table->foreignId('user_id')->constrained();
       $table->foreignId('college_id')->constrained();

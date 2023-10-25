@@ -50,10 +50,8 @@
               @else
                 <thead>
                   <tr>
-                    <th class="border-bottom-0">English Name</th>
-                    <th class="border-bottom-0">Arabic Name</th>
-                    <th class="border-bottom-0">English Code</th>
-                    <th class="border-bottom-0">Arabic Code</th>
+                    <th class="border-bottom-0">Name</th>
+                    <th class="border-bottom-0">Code</th>
                     <th class="border-bottom-0">College</th>
                     <th class="border-bottom-0">Hours</th>
                     <th class="border-bottom-0">Added by</th>
@@ -62,11 +60,9 @@
                 <tbody>
                   @foreach ($transferables as $transferable)
                     <tr>
-                      <td>{{ $transferable->name_en }}</td>
-                      <td>{{ $transferable->name_ar }}</td>
-                      <td>{{ $transferable->code_en }}</td>
-                      <td>{{ $transferable->code_ar }}</td>
-                      <td>{{ $transferable->college->college_en}}</td>
+                      <td>{{ $transferable->name }}</td>
+                      <td>{{ $transferable->code }}</td>
+                      <td>{{ $transferable->college->name}}</td>
                       <td>{{ $transferable->hours }}</td>
                       <td>{{ $transferable->user->name }}</td>
                     </tr>

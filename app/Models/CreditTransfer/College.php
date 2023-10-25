@@ -15,7 +15,7 @@ class College extends Model
 
   protected $table = 'colleges';
 
-  protected $fillable = ['college_en', 'college_ar','user_id'];
+  protected $fillable = ['name','user_id'];
 
   public function user(){
     return $this->belongsTo(User::class);

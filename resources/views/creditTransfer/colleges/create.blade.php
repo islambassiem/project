@@ -30,22 +30,13 @@
                     <div class="card card-body pd-20 pd-md-40 border shadow-none">
                       <h5 class="card-title mg-b-20">Your College Details</h5>
                       <div class="form-group">
-                        <label class="main-content-label tx-11 tx-medium tx-gray-600">English Name</label>
-                        <input class="form-control" type="text" name="college_en" value="{{ old('college_en') }}">
-                          @error('college_en')
+                        <label class="main-content-label tx-11 tx-medium tx-gray-600">College Name</label>
+                        <input class="form-control" type="text" name="name" value="{{ old('name') }}">
+                          @error('name')
                             <div class="alert alert-danger mt-2">
                               {{ $message }}
                             </div>
                           @enderror
-                      </div>
-                      <div class="form-group">
-                        <label class="main-content-label tx-11 tx-medium tx-gray-600">Arabic Name</label>
-                        <input class="form-control" type="text" name="college_ar" value="{{ old('college_ar') }}">
-                        @error('college_ar')
-                          <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                          </div>
-                        @enderror
                       </div>
                       <div class="form-group">
                       </div>

@@ -11,7 +11,7 @@ class Specialization extends Model
   use HasFactory;
   protected $connection = 'creditTransfer';
   protected $table = 'specializations';
-  protected $fillable = ['spec_en', 'spec_ar', 'user_id'];
+  protected $fillable = ['name', 'user_id'];
 
   public function user(){
     return $this->belongsTo(User::class);

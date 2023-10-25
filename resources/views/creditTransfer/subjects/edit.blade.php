@@ -31,43 +31,25 @@
                     <div class="card card-body pd-20 pd-md-40 border shadow-none">
                       <h5 class="card-title mg-b-20">Your Subject Details</h5>
                       <div class="form-group">
-                        <label class="main-content-label tx-11 tx-medium tx-gray-600">English Name</label>
-                        <input class="form-control" type="text" name="name_en" value="{{ $subject->name_en }}">
-                          @error('name_en')
+                        <label class="main-content-label tx-11 tx-medium tx-gray-600">Name</label>
+                        <input class="form-control" type="text" name="name" value="{{ $subject->name }}">
+                          @error('name')
                             <div class="alert alert-danger mt-2">
                               {{ $message }}
                             </div>
                           @enderror
                       </div>
                       <div class="form-group">
-                        <label class="main-content-label tx-11 tx-medium tx-gray-600">Arabic Name</label>
-                        <input class="form-control" type="text" name="name_ar" value="{{ $subject->name_ar }}">
-                        @error('name_en')
-                          <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                          </div>
-                        @enderror
-                      </div>
-                      <div class="form-group">
                         <div class="row row-sm">
                           <div class="col-sm-8">
                             <div class="row row-sm">
                               <div class="col-sm-6">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">English Code</label>
-                                <input class="form-control" type="text" name="code_en" value="{{ $subject->code_en }}">
-                                @error('code_en')
+                                <label class="main-content-label tx-11 tx-medium tx-gray-600">Code</label>
+                                <input class="form-control" type="text" name="code_en" value="{{ $subject->code }}">
+                                @error('code')
                                   <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                   </div>
-                                @enderror
-                              </div>
-                              <div class="col-sm-6 mg-t-10 mg-sm-t-0">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">Arabic Code</label>
-                                <input class="form-control" type="text" name="code_ar" value="{{ $subject->code_ar }}">
-                                @error('code_ar')
-                                <div class="alert alert-danger mt-2">
-                                  {{ $message }}
-                                </div>
                                 @enderror
                               </div>
                             </div>

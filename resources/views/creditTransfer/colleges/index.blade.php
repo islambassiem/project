@@ -50,16 +50,14 @@
               @else
                 <thead>
                   <tr>
-                    <th class="border-bottom-0">English Name</th>
-                    <th class="border-bottom-0">Arabic Name</th>
+                    <th class="border-bottom-0">College Name</th>
                     <th class="border-bottom-0" style="width: 33%">Added by</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($colleges as $college)
                     <tr>
-                      <td>{{ $college->college_en }}</td>
-                      <td>{{ $college->college_ar }}</td>
+                      <td>{{ $college->name }}</td>
                       <td>{{ $college->user->name }}</td>
                     </tr>
                   @endforeach

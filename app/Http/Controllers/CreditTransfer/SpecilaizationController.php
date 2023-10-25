@@ -32,11 +32,9 @@ class SpecilaizationController extends Controller
   public function store(Request $request)
   {
     $validated = $request->validate([
-      'spec_en' => 'required|max:255',
-      'spec_ar' => 'required|max:255'
+      'name' => 'required|max:255',
     ], [
-      'spec_en.required' => 'The specialization name in English is required',
-      'spec_ar.required' => 'The specialization name in Arabic is required'
+      'name.required' => 'The specialization name is required',
     ]);
     $validated['user_id'] = auth('creditTransfer')->user()->id;
     Specialization::create($validated);
