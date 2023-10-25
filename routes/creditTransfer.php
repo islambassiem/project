@@ -28,7 +28,7 @@ use App\Http\Controllers\CreditTransfer\SpecilaizationController;
 */
 
 
-Route::group(['namespace' => 'creditTransfer', 'prefix' => 'creditTransfer', 'middleware' => 'auth:creditTransfer'], function () {
+Route::group(['namespace' => 'creditTransfer', 'prefix' => 'transfer', 'middleware' => 'auth:creditTransfer'], function () {
   Route::get('/', [DashboardController::class, 'index'])->name('credit.dashboard');
   Route::get('/logout', [LoginController::class, 'logout'])->name('credit.logout');
 });
@@ -39,7 +39,7 @@ Route::group(['namespace' => 'creditTransfer', 'prefix' => 'creditTransfer', 'mi
 
 
 
-Route::group(['prefix' => 'creditTransfer'], function () {
+Route::group(['prefix' => 'transfer'], function () {
   Route::resource('subject', SubjectController::class);
   Route::resource('college', CollegeController::class);
   Route::resource('transferable', TransferableController::class);
@@ -50,36 +50,20 @@ Route::group(['prefix' => 'creditTransfer'], function () {
 });
 
 Route::get('/', function (){
-  // Department::create([
-  //   'department_en' => 'Humman Resources',
-  //   'department_ar' => 'الموارد البشرية'
-  // ]);
-
-  // Department::create([
-  //   'department_en' => 'Nursing',
-  //   'department_ar' => 'التمريض'
-  // ]);
-
-  // User::create([
-  //   'name' => 'Islam Bassiem Abdelfattah Aboukila',
-  //   'email' => 'islam@inaya.edu.sa',
-  //   'empid' => '500322',
-  //   'department_id' => '1',
-  //   'password' => Hash::make('123')
-  // ]);
-
-  // User::create([
-  //   'name' => 'Rawhia Saleh Salah Doghaim',
-  //   'email' => 'rawhia@inaya.edu.sa',
-  //   'empid' => '500545',
-  //   'department_id' => '2',
-  //   'password' => Hash::make('123')
-  // ]);
+//   Department::create([
+//     'name' => 'Nursing'
+//   ]);
+//   User::create([
+//     'name' => 'Islam Bassiem',
+//     'email' => 'islambassiem@inaya.edu.sa',
+//     'empid' => '500322',
+//     'department_id' => '1',
+//     'password' => Hash::make('123')
+//   ]);
 
   // College::create([
-  //   'college_en' => 'Inaya Medical College',
-  //   'college_ar' => 'كلية العناية الطبية',
-  //   'user_id' => 1
+  //   'name' => 'Inaya Medical Colleges',
+  //   'user_id' => '1'
   // ]);
 });
 

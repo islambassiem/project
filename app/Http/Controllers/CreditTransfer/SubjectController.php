@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CreditTransfer;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CreditTransfer\Subject;
@@ -24,7 +25,7 @@ class SubjectController extends Controller
    */
   public function create()
   {
-    return view('creditTransfer.subjects.create');
+    // return view('creditTransfer.subjects.create');
   }
 
   /**
@@ -32,10 +33,27 @@ class SubjectController extends Controller
    */
   public function store(Request $request)
   {
+    $request->request->add([
+      'college_id' => 1,
+      'user_id' => auth('creditTransfer')->user()->id
+    ]);
     $validated = $request->validate([
-      'name' => ['required', 'unique:App\Models\CreditTransfer\Subject,name', 'max:255'],
-      'code' => ['required', 'unique:App\Models\CreditTransfer\Subject,code', 'max:255'],
-      'hours'   => ['required', 'min:0']
+      'name' => [
+        'required',
+        'max:255',
+        Rule::unique('App\Models\CreditTransfer\Subject','name')
+          ->where('college_id', $request->college_id)
+      ],
+      'code' => [
+        'required',
+        'max:255',
+        Rule::unique('App\Models\CreditTransfer\Subject','code')
+          ->where('college_id', $request->college_id)
+      ],
+      'hours'   => [
+        'required',
+        'min:0'
+      ]
     ], [
       'name.required' => 'The subject English name is required',
       'name.unique' => 'This subject already exists',
@@ -48,7 +66,7 @@ class SubjectController extends Controller
     $validated['user_id'] = auth('creditTransfer')->user()->id;
     $validated['college_id'] = 1;
     Subject::create($validated);
-    session()->flash('success', 'You have added a subject succefully');
+    session()->flash('success', 'You have added a subject successfully');
     return redirect()->route('subject.index');
   }
 
@@ -92,7 +110,7 @@ class SubjectController extends Controller
     $validated['user_id'] = auth('creditTransfer')->user()->id;
     $validated['college_id'] = 1;
     Subject::where('id', $request->id)->update($validated);
-    session()->flash('success', 'You have updated the subject succefully');
+    session()->flash('success', 'You have updated the subject successfully');
     return redirect()->route('subject.index');
   }
 
@@ -102,7 +120,7 @@ class SubjectController extends Controller
   public function destroy(string $id)
   {
     Subject::where('id', $id)->delete();
-    session()->flash('delete', 'You have deleted the subject succefully');
+    session()->flash('delete', 'You have deleted the subject successfully');
     return redirect()->route('subject.index');
   }
 }

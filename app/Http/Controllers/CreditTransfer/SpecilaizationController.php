@@ -32,13 +32,14 @@ class SpecilaizationController extends Controller
   public function store(Request $request)
   {
     $validated = $request->validate([
-      'name' => 'required|max:255',
+      'name' => 'required|max:255|unique:App\Models\CreditTransfer\Specialization,name',
     ], [
       'name.required' => 'The specialization name is required',
+      'name.unique'   => 'The specialization already exists'
     ]);
     $validated['user_id'] = auth('creditTransfer')->user()->id;
     Specialization::create($validated);
-    session()->flash('success', 'You have added a specialization succefully');
+    session()->flash('success', 'You have added a specialization successfully');
     return redirect()->route('specialization.index');
   }
 

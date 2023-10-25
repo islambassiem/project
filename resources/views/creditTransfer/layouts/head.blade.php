@@ -5,5 +5,5 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <title>Document</title>
+  <title>@yield('title')</title>
 </head>

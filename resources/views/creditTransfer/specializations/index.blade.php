@@ -1,4 +1,10 @@
 @extends('creditTransfer.layouts.master')
+
+@section('title')
+  Specializations
+@endsection
+
+
 @section('css')
 @endsection
 
@@ -12,7 +18,37 @@
     </div>
     <div class="row">
       <div class="col d-flex flex-row-reverse">
-        <a href="{{ route('specialization.create') }}" class="btn btn-primary">Add Specialization</a>
+        <button type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#Specialization">
+          Add a Specialization
+        </button>
+        <!-- Start Modal -->
+        <div class="modal fade" id="Specialization" tabindex="-1" aria-labelledby="SpecializationLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="SpecializationLabel">Add a Specialization</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="{{ route('specialization.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="specializationName" class="form-label">Specialization Name</label>
+                    <input type="text" name="name" class="form-control" id="specializationName" placeholder="Specialization Name">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- End Modal -->
       </div>
     </div>
     <div class="row mt-5">
@@ -21,22 +57,29 @@
           <div class="card-body">
             <div class="table-responsive">
               <table id="example" class="table key-buttons text-md-nowrap">
+                @error('name')
+                <div class="alert alert-danger mt-2">
+                  {{ $message }}
+                </div>
+              @enderror
                 @if (count($specializations) == 0)
                   <div class="alert alert-danger">There are no Specializations</div>
                 @else
                   <thead>
                     <tr>
-                      <th class="border-bottom-0">English Name</th>
-                      <th class="border-bottom-0">Arabic Name</th>
-                      <th class="border-bottom-0" style="width: 33%">Added by</th>
+                      <th>Specialization ID</th>
+                      <th>Specialization Name</th>
+                      <th>Added by</th>
+                      <th>Added at</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($specializations as $specialization)
                       <tr>
-                        <td>{{ $specialization->spec_en }}</td>
-                        <td>{{ $specialization->spec_ar }}</td>
+                        <td>{{ $specialization->id }}</td>
+                        <td>{{ $specialization->name }}</td>
                         <td>{{ $specialization->user->name }}</td>
+                        <td>{{ date('d/m/Y', strtotime($specialization->created_at)) }}</td>
                       </tr>
                     @endforeach
                   </tbody>

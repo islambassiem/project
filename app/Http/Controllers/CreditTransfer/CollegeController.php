@@ -14,7 +14,7 @@ class CollegeController extends Controller
    */
   public function index()
   {
-    $colleges = College::where('id', '>', '1')->get();
+    $colleges = College::all();
     return view('creditTransfer.colleges.index', compact('colleges'));
   }
 
@@ -23,7 +23,7 @@ class CollegeController extends Controller
    */
   public function create()
   {
-    return view('creditTransfer.colleges.create');
+    //
   }
 
   /**
@@ -39,7 +39,7 @@ class CollegeController extends Controller
     ]);
     $validated['user_id'] = auth('creditTransfer')->user()->id;
     College::create($validated);
-    session()->flash('success', 'You have added a college succefully');
+    session()->flash('success', 'You have added a college successfully');
     return redirect()->route('college.index');
   }
 

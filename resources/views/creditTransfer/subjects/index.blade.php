@@ -1,105 +1,119 @@
 @extends('creditTransfer.layouts.master')
+
+@section('title')
+  Subjects
+@endsection
+
 @section('css')
-<!-- Internal Data table css -->
-<link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 @endsection
-@section('page-header')
-  <!-- breadcrumb -->
-  <div class="breadcrumb-header justify-content-between">
-    <div class="my-auto">
-      <div class="d-flex">
-        <h4 class="content-title mb-0 my-auto">Subjects</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Inaya</span>
-      </div>
-    </div>
-  </div>
-  <!-- breadcrumb -->
-@endsection
+
 @section('content')
-  <!-- row opened -->
-  <div class="row row-sm">
-    <!--div-->
-    <div class="col-xl-12">
-      <div class="card mg-b-20">
-        <div class="card-header pb-0">
-          <div class="d-flex justify-content-between">
-            <h4 class="card-title mg-b-0">Inaya Subjects</h4>
-            <a href="{{ route('subject.create') }}" class="btn btn-primary">Add Subject</a>
+<div class="body position-relative p-3">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 class="position-relative">Subjects</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex flex-row-reverse">
+        <button type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#addTransferable">
+          Add Inaya subject
+        </button>
+        <!-- Start Modal -->
+        <div class="modal fade" id="addTransferable" tabindex="-1" aria-labelledby="addTransferableLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addTransferableLabel">Add a subject to be studied by the student</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="{{ route('subject.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                  <div class="mb-3">
+                    {{-- <label for="subhectName" class="form-label">Subject Name</label> --}}
+                    <input type="text" name="name" class="form-control" id="subhectName" placeholder="Subject Name" value="{{ old('name') }}">
+                  </div>
+                  <div class="mb-3">
+                    {{-- <label for="subjectCode" class="form-label">Subject Code</label> --}}
+                    <input type="text" name="code" class="form-control" id="subjectCode" placeholder="Subject Code" value="{{ old('code') }}">
+                  </div>
+                  <div class="mb-3">
+                    {{-- <label for="hours" class="form-label">Subject Hours</label> --}}
+                    <input type="number" name="hours" class="form-control" id="hours" placeholder="Subject Hours"  value="{{ old('hours') }}">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            @if (session()->has('success'))
-              <div class="alert alert-success">
-                {{ session()->get('success') }}
-              </div>
-            @endif
-            @if (session()->has('delete'))
-              <div class="alert alert-danger">
-                {{ session()->get('delete') }}
-              </div>
-            @endif
-            <table id="example" class="table key-buttons text-md-nowrap">
-              @if (count($subjects) == 0)
-                <div class="alert alert-danger">There are no subjects</div>
-              @else
-                <thead>
-                  <tr>
-                    <th class="border-bottom-0">Name</th>
-                    <th class="border-bottom-0">Code</th>
-                    <th class="border-bottom-0">Hours</th>
-                    <th class="border-bottom-0">Added by</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($subjects as $subject)
+        <!-- End Modal -->
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="example" class="table key-buttons text-md-nowrap">
+                @error('name')
+                  <div class="alert alert-danger mt-2">
+                    {{ $message }}
+                  </div>
+                @enderror
+                @error('code')
+                <div class="alert alert-danger mt-2">
+                  {{ $message }}
+                </div>
+                @enderror
+                @error('hours')
+                  <div class="alert alert-danger mt-2">
+                    {{ $message }}
+                  </div>
+                @enderror
+                @error('college_id')
+                  <div class="alert alert-danger mt-2">
+                    {{ $message }}
+                  </div>
+                @enderror
+                @if (count($subjects) == 0)
+                  <div class="alert alert-danger">There are no Subjects</div>
+                @else
+                  <thead>
                     <tr>
-                      <td>{{ $subject->name }}</td>
-                      <td>{{ $subject->code }}</td>
-                      <td>{{ $subject->hours }}</td>
-                      <td>{{ $subject->user->name }}</td>
-
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Code</th>
+                      <th>Hours</th>
                     </tr>
-                  @endforeach
-                </tbody>
-              @endif
-            </table>
-          </div>
+                  </thead>
+                  <tbody>
+                    @foreach ($subjects as $subject)
+                      <tr>
+                        <td>{{ $subject->id }}</td>
+                        <td>{{ $subject->name }}</td>
+                        <td>{{ $subject->code }}</td>
+                        <td>{{ $subject->hours }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                @endif
+              </table>
+            </div>
+          <div>
         </div>
       </div>
     </div>
-    <!--/div-->
-
   </div>
-  <!-- /row -->
 </div>
-<!-- Container closed -->
-</div>
-<!-- main-content closed -->
 @endsection
 @section('js')
-<!-- Internal Data tables -->
-<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
-<!--Internal  Datatable js -->
-<script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 @endsection
