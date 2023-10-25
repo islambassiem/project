@@ -1,22 +1,31 @@
 @extends('creditTransfer.layouts.master')
 @section('css')
-<!--- Internal Select2 css-->
-<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-@endsection
-@section('page-header')
-				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between">
-					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Colleges</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Crate College</span>
-						</div>
-					</div>
-				</div>
-				<!-- breadcrumb -->
 @endsection
 @section('content')
-      <!-- row -->
-      <div class="row">
+
+<div class="body position-relative p-3">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 class="position-relative">Colleges / <span class="fs-6">Create</span></h2>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-body">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      {{-- <div class="row">
         <div class="col-lg-12 col-md-12">
           <div class="card">
             <div class="card-body">
@@ -49,15 +58,8 @@
           </div>
         </div>
       </div>
-      <!-- /row -->
     </div>
-    <!-- Container closed -->
-  </div>
-  <!-- main-content closed -->
+  </div> --}}
 @endsection
 @section('js')
-<!--Internal  Select2 js -->
-<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
-<!-- Form-layouts js -->
-<script src="{{URL::asset('assets/js/form-layouts.js')}}"></script>
 @endsection
