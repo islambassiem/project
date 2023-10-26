@@ -54,7 +54,7 @@
         <div class="card">
           <div class="card-body">
             <div class="table-responsive">
-              <table id="example" class="table key-buttons text-md-nowrap">
+              <table id="example" class="table key-buttons text-md-nowrap table-striped">
                 @error('name')
                 <div class="alert alert-danger mt-2">
                   {{ $message }}

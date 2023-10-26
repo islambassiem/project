@@ -73,7 +73,7 @@
         <div class="card">
           <div class="card-body">
             <div class="table-responsive">
-              <table id="example" class="table key-buttons text-md-nowrap">
+              <table id="transferables" class="table key-buttons text-md-nowrap table-striped">
                 @error('name')
                   <div class="alert alert-danger mt-2">
                     {{ $message }}
@@ -128,4 +128,7 @@
 </div>
 @endsection
 @section('js')
+<script>
+  let table = new DataTable('#transferables');
+</script>
 @endsection

@@ -1,27 +1,113 @@
 @extends('creditTransfer.layouts.master')
-@section('css')
-<!-- Internal Data table css -->
-<link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+
+@section('title')
+  Transactions
 @endsection
-@section('page-header')
-  <!-- breadcrumb -->
-  <div class="breadcrumb-header justify-content-between">
-    <div class="my-auto">
-      <div class="d-flex">
-        <h4 class="content-title mb-0 my-auto">Transactions</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+@section('css')
+@endsection
+
+@section('content')
+
+
+<div class="body position-relative p-3">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 class="position-relative">Transactions</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex flex-row-reverse">
+        <button type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#addTransation">
+          Add Transaction
+        </button>
+        <!-- Start Modal -->
+        <div class="modal fade" id="addTransation" tabindex="-1" aria-labelledby="addTransationLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addTransationLabel">Add a college or a University</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="{{ route('college.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="collegeName" class="form-label">College Name</label>
+                    <input type="text" name="name" class="form-control" id="collegeName" placeholder="College Name">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- End Modal -->
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="example" class="table key-buttons text-md-nowrap table-striped">
+                @error('name')
+                <div class="alert alert-danger mt-2">
+                  {{ $message }}
+                </div>
+              @enderror
+                @if (count($transactions) == 0)
+                  <div class="alert alert-danger">There are no colleges</div>
+                @else
+                  <thead>
+                    <tr>
+                      <th>College ID</th>
+                      <th>College Name</th>
+                      <th>Added by</th>
+                      <th>Added at</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($transactions as $transaction)
+                      <tr>
+                        <td>{{ $transaction->id }}</td>
+                        <td>{{ $transaction->student_name }}</td>
+                        <td>{{ $transaction->user->name }}</td>
+                        <td>{{ date('d/m/Y', strtotime($transaction->created_at)) }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                @endif
+              </table>
+            </div>
+          <div>
+        </div>
       </div>
     </div>
   </div>
-  <!-- breadcrumb -->
-@endsection
-@section('content')
-  <!-- row opened -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div class="row row-sm">
     <!--div-->
     <div class="col-xl-12">
@@ -29,7 +115,8 @@
         <div class="card-header pb-0">
           <div class="d-flex justify-content-between">
             <h4 class="card-title mg-b-0">Transactions</h4>
-            <a href="{{ route('transaction.create') }}" class="btn btn-primary">Add Transaction</a>
+            <
+            
           </div>
         </div>
         <div class="card-body">
@@ -81,30 +168,7 @@
     <!--/div-->
 
   </div>
-  <!-- /row -->
-</div>
-<!-- Container closed -->
-</div>
-<!-- main-content closed -->
+
 @endsection
 @section('js')
-<!-- Internal Data tables -->
-<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
-<!--Internal  Datatable js -->
-<script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 @endsection

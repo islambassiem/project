@@ -5,5 +5,6 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/plugins/css/jquery.dataTables.min.css') }}">
   <title>@yield('title')</title>
 </head>
